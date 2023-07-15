@@ -5,7 +5,7 @@ import styles from "./PensionButtons.module.css"
 export default function PensionButtons() {
   return (
     <>
-        <Text align="center">
+        <Text h4 align="center" css={{padding:"3px"}}>
             Մասնակցում եք արդյո՞ք պարտադիր կուտակային կենսաթոշակային համակարգին: Եթե այո, ապա ի՞նչ հիմունքներով:
         </Text>
         <Grid.Container className={styles.pension}>
