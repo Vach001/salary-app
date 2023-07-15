@@ -5,6 +5,7 @@ import PensionButtons from '../PensionButtons/PensionButtons'
 import { Card } from '@nextui-org/react'
 import styles from "./Salary.module.css"
 import CheckIT from "../CheckIT/CheckIT"
+import SalaryInput from '../SalaryInput/SalaryInput'
 
 export default function Salary() {
   return (
@@ -14,6 +15,7 @@ export default function Salary() {
             <InputButtons />
             <PensionButtons />
             <CheckIT />
+            <SalaryInput />
         </Card>
     </>
   )
