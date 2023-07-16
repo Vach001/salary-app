@@ -1,10 +1,11 @@
-import React from 'react';
+import React from "react";
+import Salary from "./Components/Salary/Salary";
 
 function App() {
   return (
-    <div>
-    Hello Salary App
-    </div>
+    <>
+      <Salary />
+    </>
   );
 }
 
