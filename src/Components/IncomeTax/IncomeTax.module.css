@@ -1,11 +1,11 @@
-.incomeRow {
+.table-row {
     width: 100%;
     display: table;
     table-layout: fixed;
     margin-bottom: 20px;
     margin-bottom: 2px!important
 }
-.incomSub {
+.pen-sub {
     display: table-cell;
     width: 35%;
     color: #777;
@@ -28,3 +28,18 @@
     border-radius: 0 12px 0 0;
     height: 100%
 }
+#soctax,#socother,#pentax,#clr,#droshmanish {
+    cursor: copy;
+    width: 65%;
+    text-align: right;
+    font-weight: 400;
+    font-family: Sans-serif,Roboto,courier,AAArial,ATahoma;
+    padding: 9px 8px 5px 0;
+    color: #777;
+    letter-spacing: .2rem;
+    background: #eee;
+    font-size: 3rem;
+    display: table-cell;
+    vertical-align: middle;
+    border-left: 2px solid #fff
+  }
