@@ -3,9 +3,9 @@ import Salary from "./Components/Salary/Salary";
 
 function App() {
   return (
-    <>
+    <div>
       <Salary />
-    </>
+    </div>
   );
 }
 
