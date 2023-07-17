@@ -2,7 +2,7 @@ import { pensionAction } from "../constants/pensionAction.constants";
 
 export default function reducerPension(gross, action){
 
-    const [voluntary, compulsory, unpaid] = pensionAction;
+    const {voluntary, compulsory, unpaid} = pensionAction;
 
    if (action.type === compulsory) {
         if (gross > 1125000) {
