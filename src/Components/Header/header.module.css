@@ -1,0 +1,15 @@
+.container {
+    background-color: #472f7e;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 130px;
+    border-bottom-right-radius: 130px;
+}
+
+.text {
+    font-weight: 700;
+    color: #FFF;
+    letter-spacing: 3px;
+}
