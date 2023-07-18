@@ -1,5 +1,14 @@
-.pension{
-    align-items: center;
-    display: flexbox;
+.container {
+    display: flex;
     justify-content: center;
+    gap: 25px;
+}
+
+.button{
+    /*width: 250px;*/
+}
+
+.button:hover {
+    background-color: orange !important;
+    color: #FFF;
 }

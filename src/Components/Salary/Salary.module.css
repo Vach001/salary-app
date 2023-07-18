@@ -4,4 +4,6 @@
     padding-bottom: 1%;
     width: 60%;
     background-color: rgb(234, 253, 253);
+    display: flex;
+    gap: 25px;
 }
