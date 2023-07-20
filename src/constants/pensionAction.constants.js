@@ -1,5 +1,5 @@
 export const pensionAction = {
-    VOLUNTARY: "voluntary", // Կամավոր
-    COMPULSORY: "compulsory", // պարտադիր
-    UNPAID: "unpaid" // չվճարող
+    VOLUNTARY: "VOLUNTARY", // Կամավոր
+    COMPULSORY: "COMPULSORY", // պարտադիր
+    UNPAID: "UNPAID" // չվճարող
 }

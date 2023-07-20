@@ -1,4 +1,4 @@
 export const salaryAction = {
-    GROSS: "gross",
-    NET: "net"
+    GROSS: "GROSS",
+    NET: "NET"
 }
