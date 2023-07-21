@@ -21,7 +21,9 @@ export default function Salary() {
           css={{
             marginTop: "5%",
             marginLeft: "2%",
-            marginRight: "2%",
+            marginRight: "5%",
+            marginBottom: "2%",
+            paddingRight: "5%"
           }}
         >
           <IncomeTax />

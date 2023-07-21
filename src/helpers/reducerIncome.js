@@ -5,13 +5,9 @@ export default function reducerIncome(state = initialState, action) {
 
     switch (action.type) {
         case CERTIFIED:
-            action.payload.ekamtayin = 10;
-
-            return action.payload.ekamtayin;
+            return action.payload.ekamtayin; // 10%
         case UNCERTIFIED:
-            action.payload.ekamtayin = 20;
-
-            return action.payload.ekamtayin;
+            return action.payload.ekamtayin; // 20%
         default:
             return state;
     }

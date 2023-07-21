@@ -1,22 +1,20 @@
-export default function reducerStampFee(gross, action) {
+import { initialState } from "../constants/initialState.constants";
 
-    if (gross >= 1000001) {
-        action.payload.stamp = 15000;
-        return action.payload.stamp;
-    } else if (gross >= 500001) {
-        action.payload.stamp = 8500;
-        return action.payload.stamp;
-    } else if (gross >= 200001) {
-        action.payload.stamp = 5500;
-        return action.payload.stamp;
-    } else if (gross >= 100001) {
-        action.payload.stamp = 3000;
-        return action.payload.stamp;
-    } else if (gross >= 1500) {
-        action.payload.stamp = 1500
-        return action.payload.stamp;
+const {sal, ekamtayin, droshmanishayin, soc, sumFee, finalSalary, salX} = initialState;
+
+export default function reducerStampFee(state = initialState, action) {
+
+    if (sal >= 1000001) {
+        return action.payload.droshmanishayin; // 15000
+    } else if (sal >= 500001) {
+        return action.payload.droshmanishayin; // 8500
+    } else if (sal >= 200001) {
+        return action.payload.droshmanishayin; // 5500
+    } else if (sal >= 100001) {
+        return action.payload.droshmanishayin; // 3000
+    } else if (sal >= 1500) {
+        return action.payload.droshmanishayin; // 1500
     } else {
-        action.payload.stamp = 0;
-        return action.payload.stamp;
+        return action.payload.droshmanishayin; // 0
     }
 } 
