@@ -7,6 +7,10 @@ import styles from "./Salary.module.css";
 import CheckIT from "../CheckIT/CheckIT";
 import SalaryInput from "../SalaryInput/SalaryInput";
 import IncomeTax from "../IncomeTax/IncomeTax";
+import PensionTax from "../PensionTax/PensionTax";
+import StampFee from "../StampFee/StampFee";
+import SumFee from "../SumFee/SumFee";
+import FinalSalary from "../FinalSalary/FinalSalary";
 
 export default function Salary() {
   return (
@@ -17,17 +21,23 @@ export default function Salary() {
         <PensionButtons />
         <CheckIT />
         <SalaryInput />
+
+        {/* Output block */}
+
         <Card
           css={{
-            marginTop: "5%",
-            marginLeft: "2%",
-            marginRight: "5%",
-            marginBottom: "2%",
-            paddingRight: "5%"
+            marginRight: "3%",
+            marginTop: "2%",
+            padding: "1%",
           }}
         >
           <IncomeTax />
+          <PensionTax />
+          <StampFee />
+          <SumFee />
+          <FinalSalary />
         </Card>
+        
       </Card>
     </>
   );

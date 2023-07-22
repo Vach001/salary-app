@@ -4,6 +4,6 @@ export const initialState = {
     droshmanishayin: 0,
     soc: 0,
     sumFee: 0,
-    finalSalary,
+    finalSalary: 0,
     salX: 0
 }
