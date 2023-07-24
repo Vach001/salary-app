@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Cell, Row, Button } from "@nextui-org/react";
+import {Button} from "@mui/material";
 
 export default function IncomeTax() {
   return (
@@ -99,7 +99,11 @@ export default function IncomeTax() {
           </div>
         </div>
       </section>
-      <Button>Հաշվել աշխատավարձը</Button>
+      <Button
+          variant={"contained"}
+          color={'secondary'}
+      >Հաշվել աշխատավարձը
+      </Button>
     </>
   );
 }
