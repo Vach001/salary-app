@@ -6,13 +6,13 @@ export default function reducerPension(state = initialState, action) {
 
     switch (action.pensionAction.type) {
         case VOLUNTARY:
-            action.payload.soc = 5;
+            action.payload.pension = 5;
             break;
         case COMPULSORY:
-            action.payload.soc = 5;
+            action.payload.pension = 5;
             break;
         case UNPAID:
-            action.payload.soc = 0;
+            action.payload.pension = 0;
             break;
         default:
             return state;
