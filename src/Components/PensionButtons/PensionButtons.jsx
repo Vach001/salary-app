@@ -10,17 +10,23 @@ export default function PensionButtons() {
         </Text>
         <Grid.Container className={styles.pension}>
             <Grid>
-                <Button color="warning" auto ghost>
+                <Button color="warning" auto ghost
+                onPress={(e)=> e.target.value}
+                >
                     <b>ԱՅՈ</b>, կամավոր միացած մինչ 07/2018-ը
                 </Button>
             </Grid>
             <Grid>
-                <Button color="warning" auto ghost>
+                <Button color="warning" auto ghost
+                onPress={(e)=> e.target.value}
+                >
                     <b>ԱՅՈ</b> , պարտադիր կամ 07/2018-ից հետո միացած կամավոր
                 </Button>
             </Grid>
             <Grid>
-                <Button color="warning" auto ghost>
+                <Button color="warning" auto ghost
+                onPress={(e)=> e.target.value}
+                >
                     <b>ՈՉ</b>, մասնակից չեմ   
                 </Button>
             </Grid>    

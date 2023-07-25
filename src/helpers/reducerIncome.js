@@ -1,13 +1,15 @@
-import { CERTIFIED, UNCERTIFIED } from "../constants/iTAction.constants";
-import { initialState } from "../constants/initialState.constants";
+import {CERTIFIED, UNCERTIFIED} from "../constants/iTAction.constants";
+import {initialState} from "../constants/initialState.constants";
 
 export default function reducerIncome(state = initialState, action) {
 
-    switch (action.type) {
+    switch (action.iTAction.type) {
         case CERTIFIED:
-            return action.payload.ekamtayin; // 10%
+            action.payload.incomeTax = 10; 
+            break;
         case UNCERTIFIED:
-            return action.payload.ekamtayin; // 20%
+            action.payload.incomeTax = 20;
+            break;
         default:
             return state;
     }

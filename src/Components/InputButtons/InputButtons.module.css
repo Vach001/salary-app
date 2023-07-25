@@ -1,5 +1,14 @@
-.input{
-    align-items: center;
-    display: flexbox;
-    justify-content: center;
+.buttons {
+  align-items: center;
+  display: flexbox;
+  justify-content: center;
+  border-radius: "2px";
+  border-color: aliceblue;
+  background-color: none;
+}
+.active{
+    background-color: blue;
+}
+.passive{
+    background-color: rgb(159, 198, 233);
 }

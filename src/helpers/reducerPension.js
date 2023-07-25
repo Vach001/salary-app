@@ -4,13 +4,16 @@ import { VOLUNTARY, COMPULSORY, UNPAID } from "../constants/pensionAction.consta
 
 export default function reducerPension(state = initialState, action) {
 
-    switch (action.type) {
+    switch (action.pensionAction.type) {
         case VOLUNTARY:
-            return action.payload.soc;
+            action.payload.soc = 5;
+            break;
         case COMPULSORY:
-            return action.payload.soc;
+            action.payload.soc = 5;
+            break;
         case UNPAID:
-            return action.payload.soc;
+            action.payload.soc = 0;
+            break;
         default:
             return state;
     }
