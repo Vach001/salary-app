@@ -1,6 +1,6 @@
 const selectedTypes = {
     salaryType: "GROSS",
     pensionType: "VALUNTARY",
-    iTCheck: false
+    iTCheckType: false
 }
 export default selectedTypes;

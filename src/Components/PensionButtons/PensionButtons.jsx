@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Text } from '@nextui-org/react'
-import styles from "./PensionButtons.module.css"
 import { pensionAction } from '../../constants/pensionAction.constants';
 import selectedTypes from '../../helpers/selectedTypes';
 
