@@ -1,5 +1,5 @@
 export const initialState = {
-    sal: 0,
+    salary: 0,
     incomeTax: 0,
     stampFee: 0,
     pension: 0,

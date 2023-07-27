@@ -2,15 +2,15 @@ import { Grid, Input } from "@nextui-org/react";
 import React, { useState } from "react";
 import { initialState } from "../../constants/initialState.constants";
 
-let sal = initialState.sal;
+let salary = initialState.salary;
 
 export default function SalaryInput() {
-  const [salary, setSalary] = useState('')
+  const [newSalary, setNewSalary] = useState('')
 
   const handleChange = (e) => {
-    setSalary(e.target.value)
+    setNewSalary(e.target.value)
   }
-  sal = salary
+  salary = newSalary
   
   return (
     <Grid>
