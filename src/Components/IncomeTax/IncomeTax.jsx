@@ -3,7 +3,7 @@ import { Card, Input } from "@nextui-org/react";
 import { initialState } from "../../constants/initialState.constants";
 
 let incomeTax  = initialState.incomeTax;
-const sal = initialState.sal;
+const sal = initialState.sal
 
 export default function IncomeTax() {
   const [incom, setIncom] = useState;
