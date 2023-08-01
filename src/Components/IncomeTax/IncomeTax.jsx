@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { Card, Input } from "@nextui-org/react";
-import { initialState } from "../../constants/initialState.constants";
+import { initialState }  from "../../constants/initialState.constants";
+import calculateSalary from "../../helpers/calculateSalary"
+import SalaryInput from "../SalaryInput/SalaryInput";
 
 let incomeTax  = initialState.incomeTax;
-const sal = initialState.sal
 
 export default function IncomeTax() {
-  const [incom, setIncom] = useState;
+  <SalaryInput />
+
+  const [income, setIncome] = useState(incomeTax);
 
   function handleIncome (e) {
-    setIncom(e.target.value)
+    calculateSalary()
+    setIncome(income)
 
+    console.log(initialState)
   }
 
   return (
@@ -22,7 +27,7 @@ export default function IncomeTax() {
       <Input 
       rounded 
       label="Եկամտային հարկ 20% / ՏՏ 10%" 
-      value={incomeTax} 
+      value={income} 
       onChange={handleIncome}
       color="primary" />
     </Card>

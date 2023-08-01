@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./InputButtons.module.css";
 import { salaryAction } from "../../constants/salaryAction.constants";
 import selectedTypes from "../../helpers/selectedTypes";
@@ -13,10 +13,14 @@ export default function InputButtons() {
 
   const handleGross = () => {
     salaryType = GROSS;
+
   };
   const handleNET = () => {
     salaryType = NET;
+
   };
+
+  
 
   return (
     <>
@@ -27,6 +31,7 @@ export default function InputButtons() {
         <Button
           onPress={handleGross}
           ghost
+          
         >
           {gross}
         </Button>

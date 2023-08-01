@@ -1,5 +1,7 @@
 import selectedTypes from "./selectedTypes";
 import { initialState } from "../constants/initialState.constants";
+import SalaryInput from "../Components/SalaryInput/SalaryInput";
+<SalaryInput />
 
 const salaryType = selectedTypes.salaryType;
 const pensionType = selectedTypes.pensionType;
@@ -13,8 +15,7 @@ let sumFee = initialState.sumFee;
 let finalSalary = initialState.finalSalary;
 let salX = initialState.salX;
 
-const calculateSalary = function () {
-
+export default function calculateSalary() {
   if (salaryType === "GROSS") {
 
     incomeTax = iTCheckType ? Math.round(salary * 0.1) : Math.round(salary * 0.2);
@@ -25,7 +26,7 @@ const calculateSalary = function () {
     if (pensionType === "COMPULSORY") {
       pension = Math.round(
         salary <= 500000 ? salary * 0.05 :
-        salary <= 1125000 ? salary * 0.1 - 25000 : 87500
+          salary <= 1125000 ? salary * 0.1 - 25000 : 87500
       );
     }
     if (pensionType === "UNPAID") {
@@ -33,14 +34,20 @@ const calculateSalary = function () {
     }
     stampFee = Math.round(
       salary < 100001 ? 1500 :
-      salary < 200001 ? 3000 :
-      salary < 500001 ? 5500 :
-      salary < 1000001 ? 8500 : 15000
+        salary < 200001 ? 3000 :
+          salary < 500001 ? 5500 :
+            salary < 1000001 ? 8500 : 15000
     );
     sumFee = incomeTax + pension + stampFee;
     salX = salary - sumFee;
     finalSalary = salX;
 
+    initialState.incomeTax = incomeTax;
+    initialState.stampFee = stampFee;
+    initialState.pension = pension;
+    initialState.sumFee = sumFee;
+    initialState.finalSalary = finalSalary;
+    initialState.salX = salX;
   }
 
   if (salaryType === "NET") {
@@ -61,10 +68,10 @@ const calculateSalary = function () {
           finalSalary = Math.round((Number(salary) + 15000) / 0.75);
         } else if (salary > 828750) {
           finalSalary = Math.round((Number(salary) + 15000 + 56250) / 0.8);
-        } 
+        }
 
         pension = Math.round(finalSalary <= 1125000 ? finalSalary * 0.05 : 56250);
-  
+
       }
       if (pensionType === "COMPULSORY") {
 
@@ -86,8 +93,8 @@ const calculateSalary = function () {
 
         pension = Math.round(
           finalSalary <= 500000 ? finalSalary * 0.05 :
-          finalSalary <= 1125000 ? finalSalary * 0.1 - 25000 : 87500);
-  
+            finalSalary <= 1125000 ? finalSalary * 0.1 - 25000 : 87500);
+
       }
       if (pensionType === "UNPAID") {
         if (salary > 0 && salary <= 78500) {
@@ -102,21 +109,28 @@ const calculateSalary = function () {
           finalSalary = Math.round((Number(salary) + 15000) / 0.8);
         } else if (salary > 885000) {
           finalSalary = Math.round((Number(salary) + 15000) / 0.8);
-        }     
+        }
         pension = 0;
       }
 
       incomeTax = Math.round(finalSalary * 0.2);
       stampFee = Math.round(
         finalSalary < 100001 ? 1500 :
-        finalSalary < 200001 ? 3000 :
-        finalSalary < 500001 ? 5500 :
-        finalSalary < 1000001 ? 8500 : 15000
+          finalSalary < 200001 ? 3000 :
+            finalSalary < 500001 ? 5500 :
+              finalSalary < 1000001 ? 8500 : 15000
       );
 
       sumFee = incomeTax + pension + stampFee;
       salX = finalSalary - sumFee;
       finalSalary = salX;
+
+      initialState.incomeTax = incomeTax;
+      initialState.stampFee = stampFee;
+      initialState.pension = pension;
+      initialState.sumFee = sumFee;
+      initialState.finalSalary = finalSalary;
+      initialState.salX = salX;
     }
 
     if (iTCheckType) {
@@ -131,7 +145,7 @@ const calculateSalary = function () {
           finalSalary = Math.round((Number(salary) + 8500) / 0.85);
         } else if (salary > 841500 && salary <= 941250) {
           finalSalary = Math.round((Number(salary) + 15000) / 0.85);
-        }else if (salary > 941250) {
+        } else if (salary > 941250) {
           finalSalary = Math.round((Number(salary) + 15000 + 56250) / 0.9);
         }
         pension = Math.round(finalSalary <= 1125000 ? finalSalary * 0.05 : 56250);
@@ -149,12 +163,12 @@ const calculateSalary = function () {
           finalSalary = Math.round((Number(salary) + 8500 - 25000) / 0.8);
         } else if (salary > 816500 && salary <= 910000) {
           finalSalary = Math.round((Number(salary) + 15000 - 25000) / 0.8);
-        }else if (salary > 910000) {
+        } else if (salary > 910000) {
           finalSalary = Math.round((Number(salary) + 15000 + 87500) / 0.9);
         }
         pension = Math.round(
           finalSalary < 500000 ? finalSalary * 0.05 :
-          finalSalary < 1125000 ? finalSalary * 0.1 - 25000 : 87500
+            finalSalary < 1125000 ? finalSalary * 0.1 - 25000 : 87500
         );
       }
 
@@ -171,23 +185,31 @@ const calculateSalary = function () {
           finalSalary = Math.round((Number(salary) + 15000) / 0.9);
         } else if (salary > 997500) {
           finalSalary = Math.round((Number(salary) + 15000) / 0.9);
-        }     
+        }
         pension = 0;
       }
-      
+
       incomeTax = Math.round(finalSalary * 0.1);
-      
+
       stampFee = Math.round(
         finalSalary < 100001 ? 1500 :
-        finalSalary < 200001 ? 3000 :
-        finalSalary < 500001 ? 5500 :
-        finalSalary < 1000001 ? 8500 : 15000
+          finalSalary < 200001 ? 3000 :
+            finalSalary < 500001 ? 5500 :
+              finalSalary < 1000001 ? 8500 : 15000
       );
 
 
       sumFee = incomeTax + pension + stampFee;
       salX = finalSalary - sumFee;
       finalSalary = salX;
+
+      initialState.incomeTax = incomeTax;
+      initialState.stampFee = stampFee;
+      initialState.pension = pension;
+      initialState.sumFee = sumFee;
+      initialState.finalSalary = finalSalary;
+      initialState.salX = salX;
     }
   }
+  console.log(initialState)
 }
