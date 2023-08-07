@@ -4,8 +4,11 @@ import salaryTypeReducer, { grossSalary, netSalary } from "../features/salaryBut
 import pensionTypeReducer from "../features/pensionType/pensionButtonsSlice"
 import iTCheckTypeReducer from "../features/iTCheckType/iTCheckTypeSlice"
 import salaryInputReducer from "../features/salaryInput/salaryInputSlice"
-import IncomeTaxReducer from "../features/incomeTax/incomeTaxSlice";
-
+import incomeTaxReducer from "../features/incomeTax/incomeTaxSlice";
+import pensionTaxReducer from "../features/pensionTax/pensionTaxSlice"
+import stampFeeReducer from "../features/stampFee/stampFeeSlice"
+import sumFeeReducer from "../features/sumFee/sumFeeSlice"
+import finalSalaryReducer from "../features/finalSalary/finalSalarySlice"
 
 export const store = configureStore({
     reducer: {
@@ -13,7 +16,11 @@ export const store = configureStore({
         pensionType: pensionTypeReducer,
         iTCheckType: iTCheckTypeReducer,
         salaryInput: salaryInputReducer,
-        incomeTax: IncomeTaxReducer,
+        incomeTax:  incomeTaxReducer,
+        pensionTax: pensionTaxReducer,
+        stampFee: stampFeeReducer,
+        sumFee: sumFeeReducer,
+        finalSalary: finalSalaryReducer,
     },
     
 })

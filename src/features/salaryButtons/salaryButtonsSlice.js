@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { salaryAction } from "../../constants/salaryAction.constants";
 
 const initialSalaryButtons = {
-    salaryType: "GROSS",
+    salaryType: salaryAction.GROSS,
     
 }
 
@@ -11,11 +12,11 @@ export const salaryButtonsSlice = createSlice({
 
     reducers: {
         grossSalary: (state = {}) => {
-            state.salaryType = "GROSS";
+            state.salaryType = salaryAction.GROSS;
         },
 
         netSalary: (state = {}) => {
-            state.salaryType = "NET";
+            state.salaryType = salaryAction.NET;
         },
         
     }

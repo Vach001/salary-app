@@ -1,10 +1,15 @@
 import React from "react";
 import { Card, Input, Button } from "@nextui-org/react";
-import { initialState } from "../../constants/initialState.constants";
+import { selectFinalSalary } from "../../features/finalSalary/finalSalarySlice";
+import { useDispatch, useSelector } from "react-redux";
+// import { initialState } from "../../constants/initialState.constants";
 
-const { finalSalary } = initialState;
+// const { finalSalary } = initialState;
 
 export default function FinalSalary() {
+  const finalSalary = useSelector(selectFinalSalary)
+  const dispatch = useDispatch()
+
   return (
     <>
     <Card

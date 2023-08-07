@@ -7,7 +7,7 @@ import { selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 
-let { incomeTax } = initialState;
+// let { incomeTax } = initialState;
 
 export default function IncomeTax() {
   // <SalaryInput />
@@ -35,7 +35,6 @@ export default function IncomeTax() {
   //     }      
   //   }
   // })
-console.log(incomeTax)
 
   return (
     <Card

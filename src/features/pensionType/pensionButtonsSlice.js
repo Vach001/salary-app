@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { pensionAction } from "../../constants/pensionAction.constants"
 
 const initialPensionButtons = {
-    pensionType: "VOLUNTARY",
+    pensionType: pensionAction.VOLUNTARY,
     
 }
 
@@ -11,14 +12,14 @@ export const pensionButtonsSlice = createSlice({
 
     reducers: {
         voluntary: (state = {}) => {
-            state.pensionType = "VOLUNTARY";
+            state.pensionType = pensionAction.VOLUNTARY;
         },
 
         compulsory: (state = {}) => {
-            state.pensionType = "COMPULSORY";
+            state.pensionType = pensionAction.COMPULSORY;
         },
         unpaid: (state = {}) => {
-            state.pensionType = "UNPAID";
+            state.pensionType = pensionAction.UNPAID;
         },
         
     }
