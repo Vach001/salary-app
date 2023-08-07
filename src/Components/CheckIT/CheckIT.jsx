@@ -1,17 +1,23 @@
 import React from "react";
 import { Checkbox, Text } from "@nextui-org/react";
 import selectedTypes from "../../helpers/selectedTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { certified, selectITCheckButton, uncertified } from "../../features/iTCheckType/iTCheckTypeSlice";
 
-let iTCheckType = selectedTypes.iTCheckType;
+// let iTCheckType = selectedTypes.iTCheckType;
 
-const handleCheckIT = (iTCheckType) => !iTCheckType;
- 
+
 export default function CheckIT() {
+  const selectITCheck = useSelector(selectITCheckButton)
+  
+  const dispatch = useDispatch()
+  const handleCheckIT = (iTCheckType) => iTCheckType ? dispatch(certified()) : dispatch(uncertified());
+
   return (
     <Checkbox
       color="gradient"
       defaultSelected={false}
-      onChange={handleCheckIT}
+      onClick={() => handleCheckIT}
       css={{
         display: "flex",
         justifyContent: "center",

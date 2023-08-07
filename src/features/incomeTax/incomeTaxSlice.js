@@ -1,23 +1,25 @@
-export function IncomeTaxReducer(state={}, action) {
-    if(action.type === "income-tax") {
-        return {
-            ...state,
-            incomeTax: action.payload.incomeTax
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialIncomeTax = {
+    incomeTax: 0
+}
+export const incomeTaxSlice = createSlice({
+    name: "incomeTax",
+    initialState: initialIncomeTax,
+
+    reducers: {
+        incomeTax: (state = {}, action = {}) => {
+            return {
+                ...state,
+                incomeTax: action.payload.incomeTax
+            }
+            return state;
         }
     }
-    return state;
-} 
+})
 
-export function selectSalaryIncomeTax(state) {
-    return state.salary.incomeTax
-}
+export const { incomeTax } = incomeTaxSlice.actions
 
-export function editSalaryIncomeTax(newValue) {
-    return {
-        type: "income-tax",
-        payload: {
-            incomeTax: newValue
-        }
-    }
-}
+export const selectSalaryIncomeTax = (state) => state.incomeTax.incomeTax
 
+export default incomeTaxSlice.reducer

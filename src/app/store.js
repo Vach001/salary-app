@@ -1,11 +1,19 @@
-import { combineReducers, configureStore, createStore } from "@reduxjs/toolkit";
-import { initialSalary, salaryReducer } from "../features/salaryInput/salaryInputSlice";
-import { initialState } from "../constants/initialState.constants";
-import { IncomeTaxReducer } from "../features/incomeTax/incomeTaxSlice";
+import { configureStore} from "@reduxjs/toolkit";
+// import thunk from "redux-thunk";
+import salaryTypeReducer, { grossSalary, netSalary } from "../features/salaryButtons/salaryButtonsSlice"
+import pensionTypeReducer from "../features/pensionType/pensionButtonsSlice"
+import iTCheckTypeReducer from "../features/iTCheckType/iTCheckTypeSlice"
+import salaryInputReducer from "../features/salaryInput/salaryInputSlice"
+import IncomeTaxReducer from "../features/incomeTax/incomeTaxSlice";
 
-export const store = createStore(combineReducers({
-    salary: salaryReducer,
-    incomeTax: IncomeTaxReducer
-}), {
-    salary: initialState
+
+export const store = configureStore({
+    reducer: {
+        salaryType: salaryTypeReducer,
+        pensionType: pensionTypeReducer,
+        iTCheckType: iTCheckTypeReducer,
+        salaryInput: salaryInputReducer,
+        incomeTax: IncomeTaxReducer,
+    },
+    
 })

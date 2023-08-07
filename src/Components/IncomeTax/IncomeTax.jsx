@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Input } from "@nextui-org/react";
 import { initialState }  from "../../constants/initialState.constants";
-import calculateSalary from "../../helpers/calculateSalary"
+import calculateSalary from "../../helpers/calculateNetSalaryWithIT"
 import SalaryInput from "../SalaryInput/SalaryInput";
 import { selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 
-let incomeTax  = initialState.incomeTax;
+let { incomeTax } = initialState;
 
 export default function IncomeTax() {
   // <SalaryInput />
@@ -22,8 +23,19 @@ export default function IncomeTax() {
   const incomeTax = useSelector(selectSalaryIncomeTax)
   const dispatch = useDispatch()
 
-  
-
+  // useEffect(()=>{
+  //   if(salaryType === "GROSS") {
+  //     dispatch(calculateGrossSalary());
+  //   }
+  //   if (salaryType === "NET") {
+  //     if(iTCheckType) {
+  //       dispatch(calculateNetSalaryWithIT())
+  //     } else {
+  //       dispatch(calculateNetSalaryDisIT());
+  //     }      
+  //   }
+  // })
+console.log(incomeTax)
 
   return (
     <Card
