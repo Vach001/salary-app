@@ -3,7 +3,6 @@ import { salaryAction } from "../../constants/salaryAction.constants";
 
 const initialSalaryButtons = {
     salaryType: salaryAction.GROSS,
-    
 }
 
 export const salaryButtonsSlice = createSlice({
@@ -11,11 +10,11 @@ export const salaryButtonsSlice = createSlice({
     initialState: initialSalaryButtons,
 
     reducers: {
-        grossSalary: (state = {}) => {
+        grossSalary: (state = {}, action = {}) => {
             state.salaryType = salaryAction.GROSS;
         },
 
-        netSalary: (state = {}) => {
+        netSalary: (state = {}, action = {}) => {
             state.salaryType = salaryAction.NET;
         },
         

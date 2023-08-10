@@ -1,59 +1,47 @@
 import React from 'react'
-import { Button, Text } from '@nextui-org/react'
-// import { pensionAction } from '../../constants/pensionAction.constants';
-// import selectedTypes from '../../helpers/selectedTypes';
 import { useDispatch, useSelector } from 'react-redux';
 import { compulsory, selectPensionButton, unpaid, voluntary } from '../../features/pensionType/pensionButtonsSlice';
-
-// let pensionType = selectedTypes.pensionType;
-// const { VOLUNTARY, COMPULSORY, UNPAID } = pensionAction;
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { pensionAction } from '../../constants/pensionAction.constants';
+import { Text } from '@nextui-org/react';
 
 export default function PensionButtons() {
 
-  const selectSalary = useSelector(selectPensionButton)
+  const selectPension = useSelector(selectPensionButton)
   const dispatch = useDispatch()
- 
-    // const handleVoluntary = () => {
-    //     pensionType = VOLUNTARY;
-    //   };
-    // const handleCompulsory = () => {
-    //     pensionType = COMPULSORY;
-    // };
-    // const handleUnpaid = () => {
-    //     pensionType = UNPAID;
-    // };
 
   return (
     <>
         <Text h4 align="center" css={{padding:"3px"}}>
             Մասնակցում եք արդյո՞ք պարտադիր կուտակային կենսաթոշակային համակարգին: Եթե այո, ապա ի՞նչ հիմունքներով:
         </Text>
-        <Button.Group 
-        size="md" 
-        vertical 
-        bordered
-        ghost
-        autoFocus
+        <ToggleButtonGroup
+          color="primary"
+          value = {selectPension}
+          exclusive
+          aria-label="Platform"
+          onChange={(e)=>e.preventDefault()}
         >
-            <Button
-            onPress={() => dispatch(voluntary())}
-            ghost
+            <ToggleButton
+              value={pensionAction.VOLUNTARY}
+              onClick={()=>dispatch(voluntary())}
             >
-            <b>ԱՅՈ</b>, կամավոր միացած 07/2018-ից հետո
-            </Button>
-            <Button
-            onPress={() => dispatch(compulsory())}
-            ghost
+            <b>ԱՅՈ</b> կամավոր միացած 07/2018-ից հետո
+
+            </ToggleButton>
+            <ToggleButton
+              value={pensionAction.COMPULSORY}
+              onClick={()=>dispatch(compulsory())}
             >
-            <b>ԱՅՈ</b> , պարտադիր կամ մինչ 07/2018-ը միացած կամավոր
-            </Button>
-            <Button
-            onPress={() => dispatch(unpaid())}
-            ghost
+            <b>ԱՅՈ</b> պարտադիր կամ մինչ 07/2018-ը միացած կամավոր
+            </ToggleButton>
+            <ToggleButton
+              value={pensionAction.UNPAID}
+              onClick={()=>dispatch(unpaid())}
             >
-            <b>ՈՉ</b>, մասնակից չեմ
-            </Button>
-        </Button.Group >
+            <b>ՈՉ</b> մասնակից չեմ
+            </ToggleButton>
+        </ToggleButtonGroup >
     </>
   )
 }

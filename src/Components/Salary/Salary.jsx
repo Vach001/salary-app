@@ -21,9 +21,6 @@ export default function Salary() {
         <PensionButtons />
         <CheckIT />
         <SalaryInput />
-
-        {/* Output block */}
-
         <Card
           css={{
             marginRight: "3%",
@@ -36,8 +33,7 @@ export default function Salary() {
           <StampFee />
           <SumFee />
           <FinalSalary />
-        </Card>
-        
+        </Card>        
       </Card>
     </>
   );

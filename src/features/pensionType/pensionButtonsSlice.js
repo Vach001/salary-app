@@ -3,7 +3,6 @@ import { pensionAction } from "../../constants/pensionAction.constants"
 
 const initialPensionButtons = {
     pensionType: pensionAction.VOLUNTARY,
-    
 }
 
 export const pensionButtonsSlice = createSlice({
@@ -11,19 +10,16 @@ export const pensionButtonsSlice = createSlice({
     initialState: initialPensionButtons,
 
     reducers: {
-        voluntary: (state = {}) => {
-            state.pensionType = pensionAction.VOLUNTARY;
+        voluntary: (state = {}, action = {}) => {
+            state.pensionType = pensionAction.VOLUNTARY;;
         },
-
-        compulsory: (state = {}) => {
+        compulsory: (state = {}, action = {}) => {
             state.pensionType = pensionAction.COMPULSORY;
         },
-        unpaid: (state = {}) => {
+        unpaid: (state = {}, action = {}) => {
             state.pensionType = pensionAction.UNPAID;
         },
-        
     }
-
 });
 
 export const { voluntary, compulsory, unpaid } = pensionButtonsSlice.actions;
