@@ -1,4 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { calculateGrossSalary } from "../../helpers/calculateGrossSalary"
+import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT"
+import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT"
+// import incomeTaxSlice from "../incomeTax/incomeTaxSlice"
+// import IncomeTax from "../../Components/IncomeTax/IncomeTax"
 
 // export const initialSalary = {
 //     salary: 0,
@@ -20,6 +25,9 @@ export const salaryInputSlice = createSlice({
 
     reducers: {
         inputSalary: (state = {}, action = {}) => {
+            // calculateGrossSalary()
+            // calculateNetSalaryDisIT()
+            // calculateNetSalaryWithIT()
             state.salary = action.payload
         }
     }

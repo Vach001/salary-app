@@ -39,5 +39,5 @@ export function calculateGrossSalary() {
         initialState.finalSalary = finalSalary;
         initialState.salX = salX;
     }
-    return initialState
-}
+   return {incomeTax, stampFee, pension, sumFee, finalSalary, salX}
+}    

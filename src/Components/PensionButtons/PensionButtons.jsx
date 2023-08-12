@@ -4,11 +4,13 @@ import { compulsory, selectPensionButton, unpaid, voluntary } from '../../featur
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { pensionAction } from '../../constants/pensionAction.constants';
 import { Text } from '@nextui-org/react';
+import selectedTypes from '../../helpers/selectedTypes';
 
 export default function PensionButtons() {
 
   const selectPension = useSelector(selectPensionButton)
   const dispatch = useDispatch()
+  selectedTypes.pensionType = selectPension
 
   return (
     <>

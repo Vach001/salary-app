@@ -1,6 +1,5 @@
 import { configureStore} from "@reduxjs/toolkit";
-// import thunk from "redux-thunk";
-import salaryTypeReducer, { grossSalary, netSalary } from "../features/salaryButtons/salaryButtonsSlice"
+import salaryTypeReducer from "../features/salaryButtons/salaryButtonsSlice"
 import pensionTypeReducer from "../features/pensionType/pensionButtonsSlice"
 import iTCheckTypeReducer from "../features/iTCheckType/iTCheckTypeSlice"
 import salaryInputReducer from "../features/salaryInput/salaryInputSlice"

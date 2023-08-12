@@ -11,7 +11,7 @@ export const pensionButtonsSlice = createSlice({
 
     reducers: {
         voluntary: (state = {}, action = {}) => {
-            state.pensionType = pensionAction.VOLUNTARY;;
+            state.pensionType = pensionAction.VOLUNTARY;
         },
         compulsory: (state = {}, action = {}) => {
             state.pensionType = pensionAction.COMPULSORY;

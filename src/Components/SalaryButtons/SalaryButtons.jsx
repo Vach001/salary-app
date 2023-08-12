@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./SalaryButtons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { grossSalary, netSalary, selectSalaryButtons } from "../../features/salaryButtons/salaryButtonsSlice";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { salaryAction } from "../../constants/salaryAction.constants";
+import selectedTypes from "../../helpers/selectedTypes";
+import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 
 export default function SalaryButtons() {
   const gross = "Իմացեք մաքուր աշխատավարձը";
   const net = " Իմացեք գրանցվածը";
   const selectSalary = useSelector(selectSalaryButtons)
   const dispatch = useDispatch()
+  selectedTypes.salaryType = selectSalary;
 
   return (
     <>

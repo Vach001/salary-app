@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Card, Input } from "@nextui-org/react";
-import { initialState }  from "../../constants/initialState.constants";
-import calculateSalary from "../../helpers/calculateNetSalaryWithIT"
-import SalaryInput from "../SalaryInput/SalaryInput";
-import { selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
+// import { initialState }  from "../../constants/initialState.constants";
+// import calculateSalary from "../../helpers/calculateNetSalaryWithIT"
+// import SalaryInput from "../SalaryInput/SalaryInput";
+import { incomeTax, selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
-
-// let { incomeTax } = initialState;
 
 export default function IncomeTax() {
   // <SalaryInput />
@@ -20,8 +18,12 @@ export default function IncomeTax() {
 
   //   console.log(initialState)
   // }
-  const incomeTax = useSelector(selectSalaryIncomeTax)
+  const selectIncomeTax = useSelector(selectSalaryIncomeTax)
   const dispatch = useDispatch()
+
+  useEffect(()=> {
+    dispatch(incomeTax())
+  })
 
   // useEffect(()=>{
   //   if(salaryType === "GROSS") {
@@ -43,10 +45,11 @@ export default function IncomeTax() {
       }}
     >
       <Input 
-      rounded 
-      label="Եկամտային հարկ 20% / ՏՏ 10%" 
-      value={incomeTax} 
-      color="primary" />
+        rounded 
+        label="Եկամտային հարկ 20% / ՏՏ 10%" 
+        value={selectIncomeTax} 
+        color="primary" 
+      />
     </Card>
   );
 }

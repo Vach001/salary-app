@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Checkbox, Text } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { certified, selectITCheckButton, uncertified } from "../../features/iTCheckType/iTCheckTypeSlice";
+import selectedTypes from "../../helpers/selectedTypes";
 
 export default function CheckIT() {
 
@@ -14,6 +15,7 @@ export default function CheckIT() {
     selected ? dispatch(uncertified()) : dispatch(certified());
     setSelected(!selected)
   } 
+  selectedTypes.iTCheckType = selectITCheck
 
   return (
     <Checkbox

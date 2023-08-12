@@ -1,10 +1,14 @@
 import { Grid, Input } from "@nextui-org/react";
-import React from "react";
+import React, { useEffect } from "react";
 // import { initialState } from "../../constants/initialState.constants";
 // import calculateSalary from "../../helpers/calculateSalary";
 import { useDispatch, useSelector } from "react-redux";
-import { editSalaryinput, initialSalary, inputSalary, selectSalaryInput } from "../../features/salaryInput/salaryInputSlice";
+import { inputSalary, selectSalaryInput } from "../../features/salaryInput/salaryInputSlice";
 import { initialState } from "../../constants/initialState.constants";
+import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
+import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
+import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
+import selectedTypes from "../../helpers/selectedTypes";
 // import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 // import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
 // import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
@@ -19,20 +23,20 @@ export default function SalaryInput() {
 
   initialState.salary = salary
 
-  // useEffect(()=>{
-  //   if(salaryType === "GROSS") {
-  //     calculateGrossSalary();
-  //   }
-  //   if (salaryType === "NET") {
-  //     if(iTCheckType) {
-  //       calculateNetSalaryWithIT();
-  //     } else {
-  //       calculateNetSalaryDisIT();
-  //     }      
-  //   }
-  //   console.log(initialState)
-  // })
-  // console.log(initialState)
+  useEffect(()=>{
+    if(selectedTypes.salaryType === "GROSS") {
+      calculateGrossSalary();
+    }
+    if (selectedTypes.salaryType === "NET") {
+      if(selectedTypes.iTCheckType) {
+        calculateNetSalaryWithIT();
+      } else {
+        calculateNetSalaryDisIT();
+      }      
+    }
+  })
+  
+  console.log(initialState)
 
   return (
     <Grid>
