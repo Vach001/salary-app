@@ -1,15 +1,17 @@
 import selectedTypes from "./selectedTypes";
 import { initialState } from "../constants/initialState.constants";
+import { salaryAction } from "../constants/salaryAction.constants";
+import { iTAction } from "../constants/iTAction.constants";
+import { pensionAction } from "../constants/pensionAction.constants";
 // import SalaryInput from "../Components/SalaryInput/SalaryInput";
 
-const { salaryType, pensionType, iTCheckType } = selectedTypes;
 let { salary, incomeTax, stampFee, pension, sumFee, finalSalary, salX } = initialState;
 
 export function calculateNetSalaryWithIT() {
-  salary = Number(salary)
+  salary = Number(initialState.salary)
 
-  if (salaryType === "NET" && iTCheckType) {
-    if (pensionType === "VALUNTARY") {
+  if (selectedTypes.salaryType === salaryAction.NET && iTAction.CERTIFIED) {
+    if (selectedTypes.pensionType === pensionAction.VOLUNTARY) {
       if (salary >= 0 && salary <= 83500) {
         finalSalary = Math.round((Number(salary) + 1500) / 0.85);
       } else if (salary > 83500 && salary <= 167000) {
@@ -26,7 +28,7 @@ export function calculateNetSalaryWithIT() {
       pension = Math.round(finalSalary <= 1125000 ? finalSalary * 0.05 : 56250);
     }
 
-    if (pensionType === "COMPULSORY") {
+    if (selectedTypes.pensionType === pensionAction.COMPULSORY) {
       if (salary >= 0 && salary <= 83500) {
         finalSalary = Math.round((Number(salary) + 1500) / 0.85);
       } else if (salary > 83500 && salary <= 167000) {
@@ -46,7 +48,7 @@ export function calculateNetSalaryWithIT() {
       );
     }
 
-    if (pensionType === "UNPAID") {
+    if (selectedTypes.pensionType === pensionAction.UNPAID) {
       if (salary >= 0 && salary <= 88500) {
         finalSalary = Math.round((Number(salary) + 1500) / 0.9);
       } else if (salary > 88500 && salary <= 177000) {
@@ -73,15 +75,13 @@ export function calculateNetSalaryWithIT() {
     );
 
     sumFee = incomeTax + pension + stampFee;
-    salX = finalSalary - sumFee;
-    finalSalary = salX;
+    finalSalary = salary + sumFee;
 
     initialState.incomeTax = incomeTax;
     initialState.stampFee = stampFee;
     initialState.pension = pension;
     initialState.sumFee = sumFee;
     initialState.finalSalary = finalSalary;
-    initialState.salX = salX;
   }
   return initialState
 }

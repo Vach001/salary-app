@@ -3,7 +3,9 @@ import { initialState } from "../../constants/initialState.constants";
 import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 import { useSelector } from "react-redux";
 import { selectSalaryInput } from "../salaryInput/salaryInputSlice";
-console.log(initialState)
+import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
+import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
+
 const initialIncomeTax = {
     incomeTax: 0
 }
@@ -13,15 +15,11 @@ export const incomeTaxSlice = createSlice({
 
     reducers: {
         incomeTax: (state = {}, action = {}) => {
-
-            let salary = Number(initialState.incomeTax)
-            console.log(salary)
-            state.incomeTax = state.salaryType === "GROSS" ? (salary * 0.02) : (salary * 0.01)
+            state.incomeTax = initialState.incomeTax
+            console.log(initialState)
             return {
                 ...state,
-
-                incomeTax: state.incomeTax
-
+                incomeTax: initialState.incomeTax
             }
             return state;
         }

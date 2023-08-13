@@ -9,6 +9,10 @@ import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
 import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
 import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 import selectedTypes from "../../helpers/selectedTypes";
+import { salaryAction } from "../../constants/salaryAction.constants";
+import { iTAction } from "../../constants/iTAction.constants";
+import { incomeTax } from "../../features/incomeTax/incomeTaxSlice";
+import IncomeTax from "../IncomeTax/IncomeTax";
 // import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 // import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
 // import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
@@ -24,17 +28,10 @@ export default function SalaryInput() {
   initialState.salary = salary
 
   useEffect(()=>{
-    if(selectedTypes.salaryType === "GROSS") {
-      calculateGrossSalary();
-    }
-    if (selectedTypes.salaryType === "NET") {
-      if(selectedTypes.iTCheckType) {
-        calculateNetSalaryWithIT();
-      } else {
-        calculateNetSalaryDisIT();
-      }      
-    }
-  })
+    calculateGrossSalary();
+    calculateNetSalaryWithIT();
+    calculateNetSalaryDisIT();
+  }, [salary])
   
   console.log(initialState)
 

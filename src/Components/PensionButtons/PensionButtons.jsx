@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { compulsory, selectPensionButton, unpaid, voluntary } from '../../features/pensionType/pensionButtonsSlice';
 import { ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { pensionAction } from '../../constants/pensionAction.constants';
 import { Text } from '@nextui-org/react';
 import selectedTypes from '../../helpers/selectedTypes';
+import { calculateGrossSalary } from '../../helpers/calculateGrossSalary';
+import { calculateNetSalaryDisIT } from '../../helpers/calculateNetSalaryDisIT';
+import { calculateNetSalaryWithIT } from '../../helpers/calculateNetSalaryWithIT';
 
 export default function PensionButtons() {
 
   const selectPension = useSelector(selectPensionButton)
   const dispatch = useDispatch()
   selectedTypes.pensionType = selectPension
+
+  useEffect(()=>{
+    calculateGrossSalary()
+    calculateNetSalaryDisIT()
+    calculateNetSalaryWithIT()
+  }, [selectPension])
 
   return (
     <>

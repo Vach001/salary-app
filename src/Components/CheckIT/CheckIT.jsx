@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox, Text } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { certified, selectITCheckButton, uncertified } from "../../features/iTCheckType/iTCheckTypeSlice";
 import selectedTypes from "../../helpers/selectedTypes";
+import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
+import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
+import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
 
 export default function CheckIT() {
 
@@ -16,6 +19,12 @@ export default function CheckIT() {
     setSelected(!selected)
   } 
   selectedTypes.iTCheckType = selectITCheck
+
+  useEffect(()=>{
+    calculateGrossSalary()
+    calculateNetSalaryDisIT()
+    calculateNetSalaryWithIT()
+  }, [selectITCheck])
 
   return (
     <Checkbox

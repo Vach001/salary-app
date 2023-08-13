@@ -6,6 +6,9 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { salaryAction } from "../../constants/salaryAction.constants";
 import selectedTypes from "../../helpers/selectedTypes";
 import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
+import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
+import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
+import IncomeTax from "../IncomeTax/IncomeTax";
 
 export default function SalaryButtons() {
   const gross = "Իմացեք մաքուր աշխատավարձը";
@@ -13,6 +16,13 @@ export default function SalaryButtons() {
   const selectSalary = useSelector(selectSalaryButtons)
   const dispatch = useDispatch()
   selectedTypes.salaryType = selectSalary;
+
+  useEffect(()=>{
+    calculateGrossSalary()
+    calculateNetSalaryDisIT()
+    calculateNetSalaryWithIT()
+
+  }, [selectSalary])
 
   return (
     <>

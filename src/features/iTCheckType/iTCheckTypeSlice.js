@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { iTAction } from "../../constants/iTAction.constants";
+import selectedTypes from "../../helpers/selectedTypes";
 
 const initialITCheckButtons = {
     iTCheckType: iTAction.UNCERTIFIED,
@@ -12,10 +13,12 @@ export const iTCheckTypeSlice = createSlice({
     reducers: {
         certified: (state = {}, action = {}) => {
             state.iTCheckType = iTAction.CERTIFIED;
+            selectedTypes.iTCheckType = state.iTCheckType
         },
 
         uncertified: (state = {}, action = {}) => {
             state.iTCheckType = iTAction.UNCERTIFIED; 
+            selectedTypes.iTCheckType = state.iTCheckType
         },
     }
 });

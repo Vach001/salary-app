@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import SalaryButtons from "../SalaryButtons/SalaryButtons";
 import PensionButtons from "../PensionButtons/PensionButtons";
@@ -13,6 +13,10 @@ import SumFee from "../SumFee/SumFee";
 import FinalSalary from "../FinalSalary/FinalSalary";
 
 export default function Salary() {
+  useEffect(()=>{
+    <IncomeTax />
+
+  },)
   return (
     <>
       <Header />

@@ -5,5 +5,4 @@ export const initialState = {
     pension: 0,
     sumFee: 0,
     finalSalary: 0,
-    salX: 0
 }
