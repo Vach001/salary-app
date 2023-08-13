@@ -20,7 +20,7 @@ import IncomeTax from "../IncomeTax/IncomeTax";
 
 // const { salaryType, pensionType, iTCheckType } = selectedTypes;
 
-export default function SalaryInput() {
+export default function SalaryInput(state) {
 
   const salary = useSelector(selectSalaryInput)
   const dispatch = useDispatch()
@@ -31,6 +31,8 @@ export default function SalaryInput() {
     calculateGrossSalary();
     calculateNetSalaryWithIT();
     calculateNetSalaryDisIT();
+    <IncomeTax />;
+
   }, [salary])
   
   console.log(initialState)

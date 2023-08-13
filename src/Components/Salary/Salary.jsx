@@ -13,10 +13,7 @@ import SumFee from "../SumFee/SumFee";
 import FinalSalary from "../FinalSalary/FinalSalary";
 
 export default function Salary() {
-  useEffect(()=>{
-    <IncomeTax />
-
-  },)
+ 
   return (
     <>
       <Header />
