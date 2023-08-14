@@ -17,7 +17,9 @@ export default function Salary() {
   return (
     <>
       <Header />
-      <Card className={styles.calcForm}>
+      <Card 
+      className={styles.calcForm}
+      >
         <SalaryButtons />
         <PensionButtons />
         <CheckIT />

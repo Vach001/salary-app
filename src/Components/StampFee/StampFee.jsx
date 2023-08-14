@@ -1,14 +1,10 @@
 import React from "react";
 import { Card, Input } from "@nextui-org/react";
-// import { initialState } from "../../constants/initialState.constants";
 import { selectSalaryStampFee } from "../../features/stampFee/stampFeeSlice";
-import { useDispatch, useSelector } from "react-redux";
-
-// const { droshmanishayin } = initialState;
+import { useSelector } from "react-redux";
 
 export default function StampFee() {
-  const stampFee = useSelector(selectSalaryStampFee)
-  const dispatch = useDispatch()
+  const selectStampFee = useSelector(selectSalaryStampFee)
 
   return (
     <Card
@@ -16,7 +12,12 @@ export default function StampFee() {
         bgColor: "rgb(226, 246, 180, 0.5)",
       }}
     >
-      <Input rounded label="Դրոշմանիշային վճար" value={stampFee} color="primary" />
+      <Input 
+      rounded 
+      label="Դրոշմանիշային վճար" 
+      value={selectStampFee} 
+      color="primary"
+      />
     </Card>
   );
 }

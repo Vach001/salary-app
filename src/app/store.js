@@ -21,5 +21,4 @@ export const store = configureStore({
         sumFee: sumFeeReducer,
         finalSalary: finalSalaryReducer,
     },
-    
 })

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "../../constants/initialState.constants";
 
 const initialSumFee = {
     sumFee: 0
@@ -9,11 +10,7 @@ export const sumFeeSlice = createSlice({
 
     reducers: {
         sumFee: (state = {}, action = {}) => {
-            return {
-                ...state,
-                sumFee: action.payload.sumFee
-            }
-            return state;
+            state.sumFee = initialState.sumFee
         }
     }
 })

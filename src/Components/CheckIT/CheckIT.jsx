@@ -6,13 +6,19 @@ import selectedTypes from "../../helpers/selectedTypes";
 import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
 import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
 import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
+import { incomeTax } from "../../features/incomeTax/incomeTaxSlice";
+import { pensionTax } from "../../features/pensionTax/pensionTaxSlice";
+import { stampFee } from "../../features/stampFee/stampFeeSlice";
+import { sumFee } from "../../features/sumFee/sumFeeSlice";
+import { finalSalary } from "../../features/finalSalary/finalSalarySlice";
+import { iTAction } from "../../constants/iTAction.constants";
 
 export default function CheckIT() {
 
+  const [selected, setSelected] = useState(false);
+
   const selectITCheck = useSelector(selectITCheckButton)
   const dispatch = useDispatch()
-
-  const [selected, setSelected] = useState(false);
   
   const handleCheckIT = () => {
     selected ? dispatch(uncertified()) : dispatch(certified());
@@ -21,9 +27,19 @@ export default function CheckIT() {
   selectedTypes.iTCheckType = selectITCheck
 
   useEffect(()=>{
+    if(selectITCheck === iTAction.CERTIFIED) {
+      dispatch(certified())
+    } else {
+      dispatch(uncertified())
+    }
     calculateGrossSalary()
     calculateNetSalaryDisIT()
     calculateNetSalaryWithIT()
+    dispatch(incomeTax())
+    dispatch(pensionTax())
+    dispatch(stampFee())
+    dispatch(sumFee())
+    dispatch(finalSalary())
   }, [selectITCheck])
 
   return (

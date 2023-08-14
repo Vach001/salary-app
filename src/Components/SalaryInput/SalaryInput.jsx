@@ -1,41 +1,33 @@
 import { Grid, Input } from "@nextui-org/react";
 import React, { useEffect } from "react";
-// import { initialState } from "../../constants/initialState.constants";
-// import calculateSalary from "../../helpers/calculateSalary";
 import { useDispatch, useSelector } from "react-redux";
-import { inputSalary, selectSalaryInput } from "../../features/salaryInput/salaryInputSlice";
-import { initialState } from "../../constants/initialState.constants";
-import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
-import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
-import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
-import selectedTypes from "../../helpers/selectedTypes";
-import { salaryAction } from "../../constants/salaryAction.constants";
-import { iTAction } from "../../constants/iTAction.constants";
+import { inputSalary, selectSalaryInput } from "../../../src/features/salaryInput/salaryInputSlice";
+import { initialState } from "../../../src/constants/initialState.constants";
 import { incomeTax } from "../../features/incomeTax/incomeTaxSlice";
-import IncomeTax from "../IncomeTax/IncomeTax";
-// import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
-// import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
-// import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
-// import selectedTypes from "../../helpers/selectedTypes";
+import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
+import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
+import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
+import { finalSalary } from "../../features/finalSalary/finalSalarySlice";
+import { pensionTax } from "../../features/pensionTax/pensionTaxSlice";
+import { sumFee } from "../../features/sumFee/sumFeeSlice";
+import { stampFee } from "../../features/stampFee/stampFeeSlice";
 
-// const { salaryType, pensionType, iTCheckType } = selectedTypes;
-
-export default function SalaryInput(state) {
+export default function SalaryInput() {
 
   const salary = useSelector(selectSalaryInput)
   const dispatch = useDispatch()
-
   initialState.salary = salary
 
   useEffect(()=>{
     calculateGrossSalary();
     calculateNetSalaryWithIT();
     calculateNetSalaryDisIT();
-    <IncomeTax />;
-
+    dispatch(incomeTax())
+    dispatch(pensionTax())
+    dispatch(stampFee())
+    dispatch(sumFee())
+    dispatch(finalSalary())
   }, [salary])
-  
-  console.log(initialState)
 
   return (
     <Grid>

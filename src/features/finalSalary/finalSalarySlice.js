@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "../../constants/initialState.constants";
 
 const initialFinalSalary = {
     finalSalary: 0
@@ -9,11 +10,7 @@ export const finalSalarySlice = createSlice({
 
     reducers: {
         finalSalary: (state = {}, action = {}) => {
-            return {
-                ...state,
-                finalSalary: action.payload.finalSalary
-            }
-            return state;
+            state.finalSalary= initialState.finalSalary
         }
     }
 })

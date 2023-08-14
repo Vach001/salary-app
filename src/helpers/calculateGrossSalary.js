@@ -4,9 +4,8 @@ import { pensionAction } from "../constants/pensionAction.constants";
 import { salaryAction } from "../constants/salaryAction.constants";
 import selectedTypes from "./selectedTypes";
 
-let { salary, incomeTax, stampFee, pension, sumFee, finalSalary, salX } = initialState;
-
 export function calculateGrossSalary() {
+    let { salary, incomeTax, stampFee, pension, sumFee, finalSalary } = initialState;
     salary = Number(initialState.salary)
 
     if (selectedTypes.salaryType === salaryAction.GROSS) {
@@ -23,8 +22,9 @@ export function calculateGrossSalary() {
         }
         if (selectedTypes.pensionType === pensionAction.UNPAID) {
             pension = 0;
-        }           
+        }
         stampFee = Math.round(
+            salary < 2000 ? 0 :
             salary < 100001 ? 1500 :
             salary < 200001 ? 3000 :
             salary < 500001 ? 5500 :
@@ -39,7 +39,4 @@ export function calculateGrossSalary() {
         initialState.sumFee = sumFee;
         initialState.finalSalary = finalSalary;
     }
-   return {incomeTax, stampFee, pension, sumFee, finalSalary, salX}
-}    
-
-// console.log(calculateGrossSalary())
+}

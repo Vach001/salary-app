@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "../../constants/initialState.constants";
 
 const initialPensionTax = {
     pensionTax: 0
@@ -9,11 +10,7 @@ export const pensionTaxSlice = createSlice({
 
     reducers: {
         pensionTax: (state = {}, action = {}) => {
-            return {
-                ...state,
-                pensionTax: action.payload.pensionTax
-            }
-            return state;
+            state.pensionTax = initialState.pension
         }
     }
 })

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "../../constants/initialState.constants";
 
 const initialStampFee = {
     stampFee: 0
@@ -9,11 +10,7 @@ export const stampFeeSlice = createSlice({
 
     reducers: {
         stampFee: (state = {}, action = {}) => {
-            return {
-                ...state,
-                stampFee: action.payload.stampFee
-            }
-            return state;
+            state.stampFee = initialState.stampFee
         }
     }
 })

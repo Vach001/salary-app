@@ -3,14 +3,12 @@ import { initialState } from "../constants/initialState.constants";
 import { salaryAction } from "../constants/salaryAction.constants";
 import { iTAction } from "../constants/iTAction.constants";
 import { pensionAction } from "../constants/pensionAction.constants";
-// import SalaryInput from "../Components/SalaryInput/SalaryInput";
-
-let { salary, incomeTax, stampFee, pension, sumFee, finalSalary, salX } = initialState;
 
 export function calculateNetSalaryWithIT() {
+  let { salary, incomeTax, stampFee, pension, sumFee, finalSalary } = initialState;
   salary = Number(initialState.salary)
 
-  if (selectedTypes.salaryType === salaryAction.NET && iTAction.CERTIFIED) {
+  if (selectedTypes.salaryType === salaryAction.NET && selectedTypes.iTCheckType === iTAction.CERTIFIED) {
     if (selectedTypes.pensionType === pensionAction.VOLUNTARY) {
       if (salary >= 0 && salary <= 83500) {
         finalSalary = Math.round((Number(salary) + 1500) / 0.85);
@@ -44,7 +42,7 @@ export function calculateNetSalaryWithIT() {
       }
       pension = Math.round(
         finalSalary < 500000 ? finalSalary * 0.05 :
-          finalSalary < 1125000 ? finalSalary * 0.1 - 25000 : 87500
+        finalSalary < 1125000 ? finalSalary * 0.1 - 25000 : 87500
       );
     }
 
@@ -64,16 +62,15 @@ export function calculateNetSalaryWithIT() {
       }
       pension = 0;
     }
-
     incomeTax = Math.round(finalSalary * 0.1);
 
     stampFee = Math.round(
+      finalSalary < 2000 ? 0 :
       finalSalary < 100001 ? 1500 :
       finalSalary < 200001 ? 3000 :
       finalSalary < 500001 ? 5500 :
       finalSalary < 1000001 ? 8500 : 15000
     );
-
     sumFee = incomeTax + pension + stampFee;
     finalSalary = salary + sumFee;
 
@@ -83,5 +80,4 @@ export function calculateNetSalaryWithIT() {
     initialState.sumFee = sumFee;
     initialState.finalSalary = finalSalary;
   }
-  return initialState
 }

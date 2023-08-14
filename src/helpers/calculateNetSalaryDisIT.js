@@ -4,9 +4,8 @@ import { pensionAction } from "../constants/pensionAction.constants";
 import { salaryAction } from "../constants/salaryAction.constants";
 import selectedTypes from "./selectedTypes";
 
-let { salary, incomeTax, stampFee, pension, sumFee, finalSalary, salX } = initialState;
-
 export function calculateNetSalaryDisIT() {
+  let { salary, incomeTax, stampFee, pension, sumFee, finalSalary } = initialState;
   salary = Number(initialState.salary)
 
   if (selectedTypes.salaryType === salaryAction.NET && selectedTypes.iTCheckType === iTAction.UNCERTIFIED) {
@@ -29,7 +28,6 @@ export function calculateNetSalaryDisIT() {
       }
 
       pension = Math.round(finalSalary <= 1125000 ? finalSalary * 0.05 : 56250);
-
     }
     if (selectedTypes.pensionType === pensionAction.COMPULSORY) {
 
@@ -52,7 +50,6 @@ export function calculateNetSalaryDisIT() {
       pension = Math.round(
         finalSalary <= 500000 ? finalSalary * 0.05 :
         finalSalary <= 1125000 ? finalSalary * 0.1 - 25000 : 87500);
-
     }
     if (selectedTypes.pensionType === pensionAction.UNPAID) {
       if (salary > 0 && salary <= 78500) {
@@ -70,9 +67,9 @@ export function calculateNetSalaryDisIT() {
       }
       pension = 0;
     }
-
     incomeTax = Math.round(finalSalary * 0.2);
     stampFee = Math.round(
+      finalSalary < 2000 ? 0 :
       finalSalary < 100001 ? 1500 :
       finalSalary < 200001 ? 3000 :
       finalSalary < 500001 ? 5500 :
@@ -88,5 +85,4 @@ export function calculateNetSalaryDisIT() {
     initialState.sumFee = sumFee;
     initialState.finalSalary = finalSalary;
   }
-  return initialState
 }

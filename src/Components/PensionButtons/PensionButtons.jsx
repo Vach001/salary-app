@@ -8,10 +8,16 @@ import selectedTypes from '../../helpers/selectedTypes';
 import { calculateGrossSalary } from '../../helpers/calculateGrossSalary';
 import { calculateNetSalaryDisIT } from '../../helpers/calculateNetSalaryDisIT';
 import { calculateNetSalaryWithIT } from '../../helpers/calculateNetSalaryWithIT';
+import { incomeTax } from '../../features/incomeTax/incomeTaxSlice';
+import { pensionTax } from '../../features/pensionTax/pensionTaxSlice';
+import { stampFee } from '../../features/stampFee/stampFeeSlice';
+import { sumFee } from '../../features/sumFee/sumFeeSlice';
+import { finalSalary } from '../../features/finalSalary/finalSalarySlice';
 
 export default function PensionButtons() {
 
   const selectPension = useSelector(selectPensionButton)
+  
   const dispatch = useDispatch()
   selectedTypes.pensionType = selectPension
 
@@ -19,40 +25,45 @@ export default function PensionButtons() {
     calculateGrossSalary()
     calculateNetSalaryDisIT()
     calculateNetSalaryWithIT()
+    dispatch(incomeTax())
+    dispatch(pensionTax())
+    dispatch(stampFee())
+    dispatch(sumFee())
+    dispatch(finalSalary())
   }, [selectPension])
 
   return (
     <>
-        <Text h4 align="center" css={{padding:"3px"}}>
-            Մասնակցում եք արդյո՞ք պարտադիր կուտակային կենսաթոշակային համակարգին: Եթե այո, ապա ի՞նչ հիմունքներով:
-        </Text>
-        <ToggleButtonGroup
-          color="primary"
-          value = {selectPension}
-          exclusive
-          aria-label="Platform"
-          onChange={(e)=>e.preventDefault()}
+      <Text h4 align="center" css={{padding:"3px"}}>
+          Մասնակցում եք արդյո՞ք պարտադիր կուտակային կենսաթոշակային համակարգին: Եթե այո, ապա ի՞նչ հիմունքներով:
+      </Text>
+      <ToggleButtonGroup
+        color="primary"
+        value = {selectPension}
+        exclusive
+        aria-label="Platform"
+        onChange={(e)=>e.preventDefault()}
+      >
+        <ToggleButton
+          value={pensionAction.VOLUNTARY}
+          onClick={()=>dispatch(voluntary())}
         >
-            <ToggleButton
-              value={pensionAction.VOLUNTARY}
-              onClick={()=>dispatch(voluntary())}
-            >
-            <b>ԱՅՈ</b> կամավոր միացած 07/2018-ից հետո
+        <b>ԱՅՈ</b> կամավոր միացած 07/2018-ից հետո
 
-            </ToggleButton>
-            <ToggleButton
-              value={pensionAction.COMPULSORY}
-              onClick={()=>dispatch(compulsory())}
-            >
-            <b>ԱՅՈ</b> պարտադիր կամ մինչ 07/2018-ը միացած կամավոր
-            </ToggleButton>
-            <ToggleButton
-              value={pensionAction.UNPAID}
-              onClick={()=>dispatch(unpaid())}
-            >
-            <b>ՈՉ</b> մասնակից չեմ
-            </ToggleButton>
-        </ToggleButtonGroup >
+        </ToggleButton>
+        <ToggleButton
+          value={pensionAction.COMPULSORY}
+          onClick={()=>dispatch(compulsory())}
+        >
+        <b>ԱՅՈ</b> պարտադիր կամ մինչ 07/2018-ը միացած կամավոր
+        </ToggleButton>
+        <ToggleButton
+          value={pensionAction.UNPAID}
+          onClick={()=>dispatch(unpaid())}
+        >
+        <b>ՈՉ</b> մասնակից չեմ
+        </ToggleButton>
+      </ToggleButtonGroup >
     </>
   )
 }
