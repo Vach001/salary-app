@@ -1,6 +1,6 @@
 .buttons {
   align-items: center;
-  display: flexbox;
+  display: flex;
   justify-content: center;
   border-radius: "2px";
   border-color: aliceblue;

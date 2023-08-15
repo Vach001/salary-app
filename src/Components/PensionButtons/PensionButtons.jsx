@@ -38,6 +38,7 @@ export default function PensionButtons() {
           Մասնակցում եք արդյո՞ք պարտադիր կուտակային կենսաթոշակային համակարգին: Եթե այո, ապա ի՞նչ հիմունքներով:
       </Text>
       <ToggleButtonGroup
+        fullWidth
         color="primary"
         value = {selectPension}
         exclusive
@@ -48,20 +49,20 @@ export default function PensionButtons() {
           value={pensionAction.VOLUNTARY}
           onClick={()=>dispatch(voluntary())}
         >
-        <b>ԱՅՈ</b> կամավոր միացած 07/2018-ից հետո
+        <b>ԱՅՈ</b>, կամավոր միացած 07/2018-ից հետո
 
         </ToggleButton>
         <ToggleButton
           value={pensionAction.COMPULSORY}
           onClick={()=>dispatch(compulsory())}
         >
-        <b>ԱՅՈ</b> պարտադիր կամ մինչ 07/2018-ը միացած կամավոր
+        <b>ԱՅՈ</b>, պարտադիր կամ մինչ 07/2018-ը միացած կամավոր
         </ToggleButton>
         <ToggleButton
           value={pensionAction.UNPAID}
           onClick={()=>dispatch(unpaid())}
         >
-        <b>ՈՉ</b> մասնակից չեմ
+        <b>ՈՉ</b>, մասնակից չեմ
         </ToggleButton>
       </ToggleButtonGroup >
     </>
