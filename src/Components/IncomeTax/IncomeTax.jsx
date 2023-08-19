@@ -1,105 +1,24 @@
 import React from "react";
-import { Table, Cell, Row, Button } from "@nextui-org/react";
+import { Card, Input } from "@nextui-org/react";
+import { selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
+import { useSelector } from "react-redux";
 
 export default function IncomeTax() {
+
+  const selectIncomeTax = useSelector(selectSalaryIncomeTax)
+
   return (
-    <>
-      <section /**ekamtahark */
-        css={{
-          display: "block",
-          marginRight: "1%",
-        }}
-      >
-        <div>
-          <div
-            css={{
-              width: "40%",
-              borderRadius: "12, 0, 0, 0",
-              padding:"1%"
-            }}
-          >
-            Եկամտահարկ 20% / ՏՏ 10%
-          </div>
-          <div
-            css={{
-              width: "60%",
-              borderRadius: "0, 12, 0, 0",
-            }}
-          >
-            <b>0</b>
-          </div>
-        </div>
-
-        <div /**socvchar */
-          css={{
-            display: "flex",
-          }}
-        >
-          <div
-            css={{
-              width: "40%",
-              borderRadius: "12, 0, 0, 0",
-            }}
-          >
-            Սոցիալական վճար
-          </div>
-          <div
-            css={{
-              width: "60%",
-              borderRadius: "0, 12, 0, 0",
-            }}
-          >
-            <b>0</b>
-          </div>
-        </div>
-
-        <div /**droshmanishayin vchar */
-          css={{
-            display: "flex",
-          }}
-        >
-          <div
-            css={{
-              width: "40%",
-              borderRadius: "12, 0, 0, 0",
-            }}
-          >
-            Դրոշմանիշային վճար
-          </div>
-          <div
-            css={{
-              width: "60%",
-              borderRadius: "0, 12, 0, 0",
-            }}
-          >
-            <b>0</b>
-          </div>
-        </div>
-
-        <div /**ashxatavardz */
-          css={{
-            display: "flex",
-          }}
-        >
-          <div
-            css={{
-              width: "40%",
-              borderRadius: "12, 0, 0, 0",
-            }}
-          >
-            Աշխատավարձ
-          </div>
-          <div
-            css={{
-              width: "60%",
-              borderRadius: "0, 12, 0, 0",
-            }}
-          >
-            <b>0</b>
-          </div>
-        </div>
-      </section>
-      <Button>Հաշվել աշխատավարձը</Button>
-    </>
+    <Card
+      css={{
+        bgColor: "rgb(226, 246, 180, 0.5)",
+      }}
+    >
+      <Input 
+        rounded 
+        label="Եկամտային հարկ 20% / ՏՏ 10%" 
+        value={selectIncomeTax}
+        color="primary" 
+      />
+    </Card>
   );
 }
