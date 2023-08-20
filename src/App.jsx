@@ -1,11 +1,11 @@
-import React from 'react';
-import styles from './App.css';
+import React from "react";
+import Salary from "./Components/Salary/Salary";
 
 function App() {
   return (
-    <div className={styles.app}>
-    Hello React
-    </div>
+    <>
+      <Salary />
+    </>
   );
 }
 

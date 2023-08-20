@@ -1,0 +1,8 @@
+.buttons {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: "2px";
+  border-color: aliceblue;
+  background-color: none;
+}
