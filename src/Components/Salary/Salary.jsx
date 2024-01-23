@@ -11,6 +11,7 @@ import PensionTax from "../PensionTax/PensionTax";
 import StampFee from "../StampFee/StampFee";
 import SumFee from "../SumFee/SumFee";
 import FinalSalary from "../FinalSalary/FinalSalary";
+import Footer from "../Footer/Footer";
 
 export default function Salary() {
  
@@ -38,6 +39,7 @@ export default function Salary() {
           <FinalSalary />
         </Card>        
       </Card>
+      <Footer />
     </>
   );
 }
