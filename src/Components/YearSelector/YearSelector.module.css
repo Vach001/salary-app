@@ -1,0 +1,88 @@
+.yearSelectorContainer {
+  margin-top: 16px;
+  margin-bottom: 4px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(100, 108, 255, 0.2);
+  transition: all 0.2s ease;
+}
+
+.yearSelectorContainer:hover {
+  border-color: rgba(100, 108, 255, 0.4);
+}
+
+.yearSelectorInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.yearLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.yearIcon {
+  font-size: 18px;
+}
+
+.yearText {
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5568;
+  margin: 0;
+}
+
+.yearSelect {
+  width: 160px;
+}
+
+.yearSelectInput {
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2d3748;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.yearSelectInput:hover {
+  border-color: #4CAF50;
+}
+
+.yearSelectInput:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+.yearHint {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #a0aec0;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .yearSelectorInner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .yearSelect {
+    width: 100%;
+  }
+  
+  .yearSelectorContainer {
+    padding: 10px 12px;
+  }
+}
