@@ -1,13 +1,16 @@
-import { configureStore} from "@reduxjs/toolkit";
-import salaryTypeReducer from "../features/salaryButtons/salaryButtonsSlice"
-import pensionTypeReducer from "../features/pensionType/pensionButtonsSlice"
-import iTCheckTypeReducer from "../features/iTCheckType/iTCheckTypeSlice"
-import salaryInputReducer from "../features/salaryInput/salaryInputSlice"
+import { configureStore } from "@reduxjs/toolkit";
+import salaryTypeReducer from "../features/salaryButtons/salaryButtonsSlice";
+import pensionTypeReducer from "../features/pensionType/pensionButtonsSlice";
+import iTCheckTypeReducer from "../features/iTCheckType/iTCheckTypeSlice";
+import salaryInputReducer from "../features/salaryInput/salaryInputSlice";
 import incomeTaxReducer from "../features/incomeTax/incomeTaxSlice";
-import pensionTaxReducer from "../features/pensionTax/pensionTaxSlice"
-import stampFeeReducer from "../features/stampFee/stampFeeSlice"
-import sumFeeReducer from "../features/sumFee/sumFeeSlice"
-import finalSalaryReducer from "../features/finalSalary/finalSalarySlice"
+import pensionTaxReducer from "../features/pensionTax/pensionTaxSlice";
+import stampFeeReducer from "../features/stampFee/stampFeeSlice";
+import sumFeeReducer from "../features/sumFee/sumFeeSlice";
+import finalSalaryReducer from "../features/finalSalary/finalSalarySlice";
+import healthInsuranceReducer from "../helpers/reducerHealthInsurance";
+import yearReducer from "../helpers/reducerYear";
+import netToGrossReducer from "../features/netToGrossSlice"; 
 
 export const store = configureStore({
     reducer: {
@@ -15,10 +18,13 @@ export const store = configureStore({
         pensionType: pensionTypeReducer,
         iTCheckType: iTCheckTypeReducer,
         salaryInput: salaryInputReducer,
-        incomeTax:  incomeTaxReducer,
+        incomeTax: incomeTaxReducer,
         pensionTax: pensionTaxReducer,
         stampFee: stampFeeReducer,
         sumFee: sumFeeReducer,
         finalSalary: finalSalaryReducer,
+        healthInsurance: healthInsuranceReducer,
+        year: yearReducer,
+        netToGross: netToGrossReducer, 
     },
-})
+});
