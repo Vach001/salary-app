@@ -1,30 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { iTAction } from "../../constants/iTAction.constants";
-import selectedTypes from "../../helpers/selectedTypes";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialITCheckButtons = {
-    iTCheckType: iTAction.UNCERTIFIED,
-}
+const initialState = {
+    iTCheckType: "UNCERTIFIED",
+};
 
 export const iTCheckTypeSlice = createSlice({
     name: "iTCheckType",
-    initialState: initialITCheckButtons,
-
+    initialState,
     reducers: {
-        certified: (state = {}, action = {}) => {
-            state.iTCheckType = iTAction.CERTIFIED;
-            selectedTypes.iTCheckType = state.iTCheckType
+        setITCheckType: (state, action) => {
+            state.iTCheckType = action.payload;
         },
-
-        uncertified: (state = {}, action = {}) => {
-            state.iTCheckType = iTAction.UNCERTIFIED; 
-            selectedTypes.iTCheckType = state.iTCheckType
-        },
-    }
+    },
 });
 
-export const { certified, uncertified } = iTCheckTypeSlice.actions;
-
-export const selectITCheckButton = (state) => state.iTCheckType.iTCheckType;
-
+export const { setITCheckType } = iTCheckTypeSlice.actions;
+export const selectITCheckButton = (state) => state.iTCheckType?.iTCheckType;
 export default iTCheckTypeSlice.reducer;
