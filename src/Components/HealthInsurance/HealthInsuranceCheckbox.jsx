@@ -2,6 +2,7 @@ import { Checkbox, Text } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTaxCalculations } from "../../hooks/useTaxCalculations";
 import { netToGross } from "../../features/netToGrossSlice";
+import styles from "./HealthInsuranceCheckbox.module.css";
 
 export default function HealthInsuranceCheckbox() {
     const dispatch = useDispatch();
@@ -27,14 +28,19 @@ export default function HealthInsuranceCheckbox() {
 
     if (year < 2026) return null;
 
-    return (
-        <Checkbox
-            css={{ display: "flex", justifyContent: "center", textAlign: "center" }}
-            color="gradient"
-            checked={isMember}
-            onChange={handleCheckboxChange}
-        >
-            <Text h5>Պարտադիր առողջապահության ապահովագրության մասնակից եմ և 18-ից 65 տարեկան</Text>
-        </Checkbox>
+return (
+        <div className={styles.healthContainer}>
+            <Checkbox
+                className={styles.healthCheckbox}
+                size="lg"
+                color="primary"
+                checked={isMember}
+                onChange={handleCheckboxChange}
+            >
+                <Text className={`${styles.healthText} ${isMember ? styles.checkedText : ""}`}>
+                    Առողջապահության պարտադիր ապահովագրության մասնակից եմ և 18-ից 65 տարեկան
+                </Text>
+            </Checkbox>
+        </div>
     );
 }

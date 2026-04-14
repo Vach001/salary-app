@@ -1,0 +1,41 @@
+.healthContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 12px;
+}
+
+.healthCheckbox {
+  --nextui-colors-primary: #2563eb !important;
+}
+
+.healthCheckbox :global(.nextui-checkbox-square) {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  border-radius: 6px !important;
+  border: 2px solid #cbd5e1 !important;
+  background: white !important;
+}
+
+.healthCheckbox :global(.nextui-checkbox-square[data-checked="true"]) {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.healthCheckbox :global(.nextui-checkbox-check-icon) {
+  font-size: 16px !important;
+  font-weight: bold !important;
+  color: white !important;
+}
+
+.healthText {
+  font-size: 14px !important;
+  color: #94a3b8 !important;
+  transition: color 0.2s ease;
+}
+
+.checkedText {
+  color: #1e293b !important;
+  font-weight: 500;
+}
