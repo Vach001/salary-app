@@ -1,0 +1,65 @@
+.container {
+  display: grid;
+  grid-template-columns: 0.45fr 0.55fr;
+  width: 100%;
+}
+
+.leftBox {
+  background-color: #f0f9ff;
+  padding: 12px 16px;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.leftText {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.rightBox {
+  background-color: #e0f2fe;
+  padding: 12px 16px;
+  text-align: right;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.rightBox:hover {
+  background-color: #bae6fd;
+}
+
+.rightText {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0c4a6e;
+}
+
+.copyTooltip {
+  position: absolute;
+  right: 16px;
+  bottom: -28px;
+  font-size: 12px;
+  background-color: #1e293b;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .copyTooltip {
+    font-size: 10px;
+    padding: 2px 6px;
+    right: 8px;
+    bottom: -24px;
+  }
+}
