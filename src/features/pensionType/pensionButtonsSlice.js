@@ -1,33 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { pensionAction } from "../../constants/pensionAction.constants"
-import selectedTypes from "../../helpers/selectedTypes";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialPensionButtons = {
-    pensionType: pensionAction.VOLUNTARY,
-}
+const initialState = {
+    pensionType: "VOLUNTARY",
+};
 
 export const pensionButtonsSlice = createSlice({
-    name: 'pensionType',
-    initialState: initialPensionButtons,
-
+    name: "pensionType",
+    initialState,
     reducers: {
-        voluntary: (state = {}, action = {}) => {
-            state.pensionType = pensionAction.VOLUNTARY;
-            selectedTypes.pensionType = state.pensionType
+        setPensionType: (state, action) => {
+            state.pensionType = action.payload;
         },
-        compulsory: (state = {}, action = {}) => {
-            state.pensionType = pensionAction.COMPULSORY;
-            selectedTypes.pensionType = state.pensionType
-        },
-        unpaid: (state = {}, action = {}) => {
-            state.pensionType = pensionAction.UNPAID;
-            selectedTypes.pensionType = state.pensionType
-        },
-    }
+    },
 });
 
-export const { voluntary, compulsory, unpaid } = pensionButtonsSlice.actions;
-
-export const selectPensionButton = (state) => state.pensionType.pensionType;
-
+export const { setPensionType } = pensionButtonsSlice.actions;
+export const selectPensionButton = (state) => state.pensionType?.pensionType;
 export default pensionButtonsSlice.reducer;
