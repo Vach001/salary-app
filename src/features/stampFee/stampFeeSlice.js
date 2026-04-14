@@ -1,22 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "../../constants/initialState.constants";
 
-const initialStampFee = {
-    stampFee: 0
-}
-export const stampFeeSlice = createSlice({
+const calculateStampFeeValue = (salary, year) => {
+    if (!salary || salary <= 0) return 0;
+    if (year >= 2026) {
+        return salary <= 1000000 ? 1000 : 15000;
+    }
+    if (salary < 2000) return 0;
+    if (salary < 100001) return 1500;
+    if (salary < 200001) return 3000;
+    if (salary < 500001) return 5500;
+    if (salary < 1000001) return 8500;
+    return 15000;
+};
+
+const stampFeeSlice = createSlice({
     name: "stampFee",
-    initialState: initialStampFee,
-
+    initialState: { stampFee: 0 },
     reducers: {
-        stampFee: (state = {}, action = {}) => {
-            state.stampFee = initialState.stampFee
+        setStampFee: (state, action) => {
+            state.stampFee = action.payload;
         }
     }
-})
+});
 
-export const { stampFee } = stampFeeSlice.actions
+export const { setStampFee } = stampFeeSlice.actions;
 
-export const selectSalaryStampFee = (state) => state.stampFee.stampFee
+export const stampFee = () => (dispatch, getState) => {
+    const state = getState();
+    const salary = state.salaryInput?.salary || 0;
+    const year = state.year?.year || new Date().getFullYear();
+    dispatch(setStampFee(calculateStampFeeValue(salary, year)));
+};
 
-export default stampFeeSlice.reducer
+export const selectSalaryStampFee = (state) => state.stampFee?.stampFee || 0;
+export default stampFeeSlice.reducer;
