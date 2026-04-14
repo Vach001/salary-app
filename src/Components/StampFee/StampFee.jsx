@@ -1,10 +1,12 @@
-import React from "react";
 import { Card, Input } from "@nextui-org/react";
-import { selectSalaryStampFee } from "../../features/stampFee/stampFeeSlice";
 import { useSelector } from "react-redux";
+import { selectSalaryStampFee } from "../../features/stampFee/stampFeeSlice";
 
 export default function StampFee() {
-  const selectStampFee = useSelector(selectSalaryStampFee)
+  const stampFee = useSelector(selectSalaryStampFee);
+  const salary = useSelector((state) => state.salaryInput?.salary || 0);
+
+  const displayValue = salary > 0 ? stampFee : 0;
 
   return (
     <Card
@@ -13,10 +15,11 @@ export default function StampFee() {
       }}
     >
       <Input 
-      rounded 
-      label="Դրոշմանիշային վճար" 
-      value={selectStampFee} 
-      color="primary"
+        rounded 
+        label="Դրոշմանիշային վճար" 
+        value={displayValue} 
+        color="primary"
+        readOnly
       />
     </Card>
   );
