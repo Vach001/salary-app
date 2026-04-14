@@ -1,7 +1,116 @@
-.calcForm{
-    margin-left: 1%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    width: 60%;
-    background-color: rgb(234, 253, 253);
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: #f0f2f5;
+  min-height: calc(100vh - 140px);
+}
+
+.calcCard {
+  display: flex;
+  flex-direction: row;
+  max-width: 1400px;
+  width: 100%;
+  background: white !important;
+  border-radius: 24px !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.calculatorSection {
+  flex: 1.2;
+  padding: 24px;
+  background: white;
+}
+
+.explanationSection {
+  flex: 0.8;
+  padding: 24px;
+  background: #f8fafc;
+  border-left: 1px solid #e2e8f0;
+}
+
+.calculatorSection > div:first-child {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.calculatorSection > div:first-child > div {
+  display: flex;
+  gap: 20px;
+  background: transparent;
+}
+
+.calculatorSection > div:nth-child(2) {
+  margin-bottom: 20px;
+}
+
+.calculatorSection > div:nth-child(2) > div {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.calculatorSection > div:nth-child(3),
+.calculatorSection > div:nth-child(4) {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.taxesCard {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: white;
+  overflow: hidden;
+  box-shadow: none !important;
+}
+
+.taxesCard > div {
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: none !important;
+}
+
+.taxesCard > div:last-child {
+  border-bottom: none;
+}
+
+.taxesCard > div:nth-child(6) {
+  background: #f0fdf4;
+}
+
+.calculatorSection > div:last-child {
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .calcCard {
+    flex-direction: column;
+  }
+  
+  .explanationSection {
+    border-left: none;
+    border-top: 1px solid #e2e8f0;
+  }
+  
+  .mainContainer {
+    padding: 10px;
+  }
+  
+  .calculatorSection {
+    padding: 16px;
+  }
+  
+  .explanationSection {
+    padding: 16px;
+  }
+  
+  .calculatorSection > div:nth-child(2) > div {
+    flex-direction: column;
+  }
 }

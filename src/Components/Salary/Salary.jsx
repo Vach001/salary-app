@@ -13,35 +13,39 @@ import HealthInsuranceAmount from "../HealthInsurance/HealthInsuranceAmount";
 import SumFee from "../SumFee/SumFee";
 import FinalSalary from "../FinalSalary/FinalSalary";
 import YearSelector from "../YearSelector/YearSelector";
+import Explanation from "../Explanation/Explanation";
 import Footer from "../Footer/Footer";
 
 export default function Salary() {
   return (
     <>
       <Header />
-      <Card className={styles.calcForm}>
-        <SalaryButtons />
-        <PensionButtons />
-        <CheckIT />
-        <HealthInsuranceCheckbox />
-        <SalaryInput />
+      <div className={styles.mainContainer}>
+        <Card className={styles.calcCard}>
+          <div className={styles.calculatorSection}>
+            <SalaryButtons />
+            <PensionButtons />
+            <CheckIT />
+            <HealthInsuranceCheckbox />
+            <SalaryInput />
 
-        <Card
-          css={{
-            marginRight: "3%",
-            marginTop: "2%",
-            padding: "1%",
-          }}
-        >
-          <IncomeTax />
-          <PensionTax />
-          <StampFee />
-          <HealthInsuranceAmount />
-          <SumFee />
-          <FinalSalary />
-          <YearSelector />
+            <div className={styles.taxesCard}>
+              <IncomeTax />
+              <PensionTax />
+              <StampFee />
+              <HealthInsuranceAmount />
+              <SumFee />
+              <FinalSalary />
+            </div>
+
+            <YearSelector />
+          </div>
+
+          <div className={styles.explanationSection}>
+            <Explanation />
+          </div>
         </Card>
-      </Card>
+      </div>
       <Footer />
     </>
   );
