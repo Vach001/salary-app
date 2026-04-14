@@ -1,22 +1,11 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectSalaryPensionTax } from "../../features/pensionTax/pensionTaxSlice";
-import styles from "./PensionTax.module.css";
+import { useCopy } from "../../hooks/useCopy";
+import styles from "../../styles/taxRow.module.css";
 
 export default function PensionTax() {
   const pensionTax = useSelector(selectSalaryPensionTax);
-  const [copied, setCopied] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(pensionTax.toString());
-    setCopied(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setCopied(false);
-  };
+  const { copied, isHovered, setIsHovered, handleCopy, handleMouseLeave } = useCopy();
 
   return (
     <div className={styles.container}>
@@ -25,18 +14,14 @@ export default function PensionTax() {
       </div>
 
       <div
-        onClick={handleCopy}
+        onClick={() => handleCopy(pensionTax)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
         className={styles.rightBox}
       >
         <span className={styles.rightText}>{pensionTax.toLocaleString()}</span>
-        {!copied && isHovered && (
-          <span className={styles.copyTooltip}>Պատճենել</span>
-        )}
-        {copied && isHovered && (
-          <span className={styles.copyTooltip}>Պատճենված է</span>
-        )}
+        {!copied && isHovered && <span className={styles.copyTooltip}>Պատճենել</span>}
+        {copied && isHovered && <span className={styles.copyTooltip}>Պատճենված է</span>}
       </div>
     </div>
   );

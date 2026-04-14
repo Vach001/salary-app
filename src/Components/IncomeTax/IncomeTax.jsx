@@ -1,25 +1,15 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
-import styles from "./IncomeTax.module.css";
+import { useCopy } from "../../hooks/useCopy";
+import styles from "../../styles/taxRow.module.css";
 
 export default function IncomeTax() {
   const incomeTax = useSelector(selectSalaryIncomeTax);
   const isIT = useSelector(
     (state) => state.iTCheckType?.iTCheckType === "CERTIFIED",
   );
-  const [copied, setCopied] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(incomeTax.toString());
-    setCopied(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setCopied(false);
-  };
+  const { copied, isHovered, setIsHovered, handleCopy, handleMouseLeave } =
+    useCopy();
 
   return (
     <div className={styles.container}>

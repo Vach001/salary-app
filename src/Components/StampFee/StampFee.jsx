@@ -1,25 +1,15 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectSalaryStampFee } from "../../features/stampFee/stampFeeSlice";
-import styles from "./StampFee.module.css";
+import { useCopy } from "../../hooks/useCopy";
+import styles from "../../styles/taxRow.module.css";
 
 export default function StampFee() {
   const stampFee = useSelector(selectSalaryStampFee);
   const salary = useSelector((state) => state.salaryInput?.salary || 0);
-  const [copied, setCopied] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const { copied, isHovered, setIsHovered, handleCopy, handleMouseLeave } =
+    useCopy();
 
   const displayValue = salary > 0 ? stampFee : 0;
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(displayValue.toString());
-    setCopied(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setCopied(false);
-  };
 
   return (
     <div className={styles.container}>
@@ -28,12 +18,14 @@ export default function StampFee() {
       </div>
 
       <div
-        onClick={handleCopy}
+        onClick={() => handleCopy(displayValue)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
         className={styles.rightBox}
       >
-        <span className={styles.rightText}>{displayValue.toLocaleString()}</span>
+        <span className={styles.rightText}>
+          {displayValue.toLocaleString()}
+        </span>
         {!copied && isHovered && (
           <span className={styles.copyTooltip}>Պատճենել</span>
         )}
