@@ -1,22 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "../../constants/initialState.constants";
 
-const initialIncomeTax = {
-    incomeTax: 0
-}
-export const incomeTaxSlice = createSlice({
+const calculateIncomeTaxValue = (salary, isIT) => {
+    const rate = isIT ? 0.10 : 0.20;
+    return Math.round(salary * rate);
+};
+
+const incomeTaxSlice = createSlice({
     name: "incomeTax",
-    initialState: initialIncomeTax,
-
+    initialState: { incomeTax: 0 },
     reducers: {
-        incomeTax: (state = {}, action = {}) => {
-            state.incomeTax = initialState.incomeTax
+        setIncomeTax: (state, action) => {
+            state.incomeTax = action.payload;
         }
     }
-})
+});
 
-export const { incomeTax } = incomeTaxSlice.actions
+export const { setIncomeTax } = incomeTaxSlice.actions;
 
-export const selectSalaryIncomeTax = (state) => state.incomeTax.incomeTax
+export const incomeTax = () => (dispatch, getState) => {
+    const state = getState();
+    const salary = state.salaryInput?.salary || 0;
+    const isIT = state.iTCheckType?.iTCheckType === "CERTIFIED";
+    dispatch(setIncomeTax(calculateIncomeTaxValue(salary, isIT)));
+};
 
-export default incomeTaxSlice.reducer
+export const selectSalaryIncomeTax = (state) => state.incomeTax?.incomeTax || 0;
+export default incomeTaxSlice.reducer;

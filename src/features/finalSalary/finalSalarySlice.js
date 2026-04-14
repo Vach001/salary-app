@@ -1,22 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "../../constants/initialState.constants";
 
-const initialFinalSalary = {
-    finalSalary: 0
-}
-export const finalSalarySlice = createSlice({
+const finalSalarySlice = createSlice({
     name: "finalSalary",
-    initialState: initialFinalSalary,
-
+    initialState: { finalSalary: 0 },
     reducers: {
-        finalSalary: (state = {}, action = {}) => {
-            state.finalSalary= initialState.finalSalary
-        }
-    }
-})
+        setFinalSalary: (state, action) => {
+            state.finalSalary = action.payload;
+        },
+    },
+});
 
-export const { finalSalary } = finalSalarySlice.actions
+export const { setFinalSalary } = finalSalarySlice.actions;
 
-export const selectFinalSalary = (state) => state.finalSalary.finalSalary
+export const finalSalary = () => (dispatch, getState) => {
+    const state = getState();
+    const grossSalary = state.salaryInput?.salary || 0;
+    const totalFees = state.sumFee?.sumFee || 0;
+    
+    dispatch(setFinalSalary(grossSalary - totalFees));
+};
 
-export default finalSalarySlice.reducer
+export const selectFinalSalary = (state) => state.finalSalary?.finalSalary || 0;
+export default finalSalarySlice.reducer;

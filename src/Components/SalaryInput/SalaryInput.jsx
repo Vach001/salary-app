@@ -1,51 +1,54 @@
 import { Grid, Input } from "@nextui-org/react";
-import React, { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { inputSalary, selectSalaryInput } from "../../../src/features/salaryInput/salaryInputSlice";
-import { initialState } from "../../../src/constants/initialState.constants";
-import { incomeTax } from "../../features/incomeTax/incomeTaxSlice";
-import { calculateGrossSalary } from "../../helpers/calculateGrossSalary";
-import { calculateNetSalaryWithIT } from "../../helpers/calculateNetSalaryWithIT";
-import { calculateNetSalaryDisIT } from "../../helpers/calculateNetSalaryDisIT";
-import { finalSalary } from "../../features/finalSalary/finalSalarySlice";
-import { pensionTax } from "../../features/pensionTax/pensionTaxSlice";
-import { sumFee } from "../../features/sumFee/sumFeeSlice";
-import { stampFee } from "../../features/stampFee/stampFeeSlice";
+import { useTaxCalculations } from "../../../src/hooks/useTaxCalculations";
 
 export default function SalaryInput() {
+    const salary = useSelector(selectSalaryInput);
+    const dispatch = useDispatch();
+    const { recalculateAll } = useTaxCalculations();
+    const year = useSelector((state) => state.year?.year || new Date().getFullYear());
+    const timeoutRef = useRef(null);
 
-  const salary = useSelector(selectSalaryInput)
-  const dispatch = useDispatch()
-  initialState.salary = salary
+    // Երբ salary-ն փոխվում է, վերահաշվարկել debounce-ով
+    useEffect(() => {
+        if (salary > 0) {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            timeoutRef.current = setTimeout(() => {
+                recalculateAll();
+            }, 500);
+        }
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        };
+    }, [salary, recalculateAll]);
 
-  useEffect(()=>{
-    calculateGrossSalary();
-    calculateNetSalaryWithIT();
-    calculateNetSalaryDisIT();
-    dispatch(incomeTax())
-    dispatch(pensionTax())
-    dispatch(stampFee())
-    dispatch(sumFee())
-    dispatch(finalSalary())
-  }, [salary])
+    const handleSalaryChange = useCallback((value) => {
+        const numericValue = parseFloat(value) || 0;
+        dispatch(inputSalary(numericValue));
+        dispatch({ type: "SET_SALARY", payload: { salary: numericValue, year } });
+    }, [dispatch, year]);
 
-  return (
-    <Grid>
-      <Input
-        value={salary}
-        onChange={(evt) => {
-          dispatch(inputSalary(evt.target.value))
-        }}
-        type="number"
-        bordered
-        labelPlaceholder="Մուտքագրե՛ք Ձեր աշխատավարձի չափը"
-        color="primary"
-        css={{
-          paddingLeft: "10px",
-          paddingRight: "10px",
-          width: "100%",
-        }}
-      />
-    </Grid>
-  );
+    const handleBlur = useCallback(() => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        if (salary > 0) {
+            recalculateAll();
+        }
+    }, [salary, recalculateAll]);
+
+    return (
+        <Grid>
+            <Input
+                value={salary || ""}
+                onChange={(evt) => handleSalaryChange(evt.target.value)}
+                onBlur={handleBlur}
+                type="number"
+                bordered
+                labelPlaceholder="Մուտքագրե՛ք Ձեր աշխատավարձի չափը"
+                color="primary"
+                css={{ paddingLeft: "10px", paddingRight: "10px", width: "100%" }}
+            />
+        </Grid>
+    );
 }
