@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/salary-app/static/css/main.551ce783.css",
+    "main.css": "/salary-app/static/css/main.c83ce0e2.css",
     "main.js": "/salary-app/static/js/main.9be41933.js",
     "index.html": "/salary-app/index.html",
-    "main.551ce783.css.map": "/salary-app/static/css/main.551ce783.css.map",
+    "main.c83ce0e2.css.map": "/salary-app/static/css/main.c83ce0e2.css.map",
     "main.9be41933.js.map": "/salary-app/static/js/main.9be41933.js.map"
   },
   "entrypoints": [
-    "static/css/main.551ce783.css",
+    "static/css/main.c83ce0e2.css",
     "static/js/main.9be41933.js"
   ]
 }
