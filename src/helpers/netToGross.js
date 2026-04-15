@@ -3,10 +3,8 @@ import { pensionAction } from "../constants/pensionAction.constants";
 export const calculateNetFromGross = (gross, isIT, pensionType, year, isHealthMember) => {
     if (gross <= 0) return 0;
     
-    // Եկամտային հարկ
     const incomeTax = Math.round(isIT ? gross * 0.1 : gross * 0.2);
     
-    // Սոցվճար
     let pension = 0;
     if (pensionType === pensionAction.VOLUNTARY) {
         pension = Math.min(Math.round(gross * 0.05), 56250);
@@ -16,8 +14,7 @@ export const calculateNetFromGross = (gross, isIT, pensionType, year, isHealthMe
         else pension = 87500;
     }
     
-    // Դրոշմանիշային վճար 
-    let stampFee = 0;
+    let stampFee;
     if (year >= 2026) {
         stampFee = gross <= 1000000 ? 1000 : 15000;
     } else {
@@ -29,54 +26,33 @@ export const calculateNetFromGross = (gross, isIT, pensionType, year, isHealthMe
         else stampFee = 15000;
     }
     
-    // Առողջապահություն 
+    // ✅ Health insurance - 10800 եթե gross > 500000
     let health = 0;
     if (year >= 2026 && isHealthMember) {
-        health = gross <= 500000 ? 4800 : 10800;
+        health = gross > 500000 ? 10800 : 4800;
     }
     
-    // Net = Gross
     return gross - incomeTax - pension - stampFee - health;
 };
 
 export const calculateGrossFromNet = (netSalary, isIT, pensionType, year, isHealthMember) => {
     if (netSalary <= 0) return 0;
     
-    // Փնտրել ամենափոքր gross-ը, որը տալիս է netSalary
-    let gross = netSalary;
-    const maxGross = netSalary * 3;
-    
-    while (gross <= maxGross) {
-        const calculatedNet = Math.round(calculateNetFromGross(gross, isIT, pensionType, year, isHealthMember));
-        
-        if (calculatedNet === netSalary) {
-            return gross;
-        }
-        
-        if (calculatedNet < netSalary) {
-            const diff = netSalary - calculatedNet;
-            const step = Math.max(1, Math.floor(diff / 10));
-            gross += step;
-        } else {
-            break;
-        }
-        
-        if (gross > maxGross) break;
-    }
-    
-    // Ստուգել մոտակա 200 արժեքները (ճշգրտության համար)
     let bestGross = netSalary;
     let bestDiff = Infinity;
     
-    for (let i = -100; i <= 100; i++) {
-        const candidate = netSalary + i;
-        if (candidate <= 0) continue;
-        const calculatedNet = Math.round(calculateNetFromGross(candidate, isIT, pensionType, year, isHealthMember));
+    for (let gross = netSalary; gross <= netSalary * 2; gross++) {
+        const calculatedNet = Math.round(calculateNetFromGross(gross, isIT, pensionType, year, isHealthMember));
         const diff = Math.abs(calculatedNet - netSalary);
         
-        if (diff < bestDiff || (diff === bestDiff && candidate < bestGross)) {
+        if (diff < bestDiff) {
             bestDiff = diff;
-            bestGross = candidate;
+            bestGross = gross;
+        }
+        
+        if (diff === 0) {
+            bestGross = gross;
+            break;
         }
     }
     
