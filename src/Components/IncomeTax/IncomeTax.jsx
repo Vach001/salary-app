@@ -1,24 +1,38 @@
-import React from "react";
-import { Card, Input } from "@nextui-org/react";
-import { selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
 import { useSelector } from "react-redux";
+import { selectSalaryIncomeTax } from "../../features/incomeTax/incomeTaxSlice";
+import { useCopy } from "../../hooks/useCopy";
+import styles from "../../styles/taxRow.module.css";
 
 export default function IncomeTax() {
-
-  const selectIncomeTax = useSelector(selectSalaryIncomeTax)
+  const incomeTax = useSelector(selectSalaryIncomeTax);
+  const isIT = useSelector(
+    (state) => state.iTCheckType?.iTCheckType === "CERTIFIED",
+  );
+  const { copied, isHovered, setIsHovered, handleCopy, handleMouseLeave } =
+    useCopy();
 
   return (
-    <Card
-      css={{
-        bgColor: "rgb(226, 246, 180, 0.5)",
-      }}
-    >
-      <Input 
-        rounded 
-        label="Եկամտային հարկ 20% / ՏՏ 10%" 
-        value={selectIncomeTax}
-        color="primary" 
-      />
-    </Card>
+    <div className={styles.container}>
+      <div className={styles.leftBox}>
+        <span className={styles.leftText}>
+          Եկամտային հարկ {isIT ? "10%" : "20%"}
+        </span>
+      </div>
+
+      <div
+        onClick={handleCopy}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        className={styles.rightBox}
+      >
+        <span className={styles.rightText}>{incomeTax.toLocaleString()}</span>
+        {!copied && isHovered && (
+          <span className={styles.copyTooltip}>Պատճենել</span>
+        )}
+        {copied && isHovered && (
+          <span className={styles.copyTooltip}>Պատճենված է</span>
+        )}
+      </div>
+    </div>
   );
 }

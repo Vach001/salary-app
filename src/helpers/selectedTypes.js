@@ -2,6 +2,6 @@ const selectedTypes = {
     salaryType: "GROSS",
     pensionType: "VOLUNTARY",  
     iTCheckType: "UNCERTIFIED",
-    healthInsuranceMember: false
+    healthInsuranceMember: true
 }
 export default selectedTypes;

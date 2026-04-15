@@ -1,23 +1,28 @@
-import React from "react";
-import { Card, Input } from "@nextui-org/react";
 import { useSelector } from "react-redux";
 import { selectSalaryPensionTax } from "../../features/pensionTax/pensionTaxSlice";
+import { useCopy } from "../../hooks/useCopy";
+import styles from "../../styles/taxRow.module.css";
 
 export default function PensionTax() {
-  const selectPensionTax = useSelector(selectSalaryPensionTax)
+  const pensionTax = useSelector(selectSalaryPensionTax);
+  const { copied, isHovered, setIsHovered, handleCopy, handleMouseLeave } = useCopy();
 
   return (
-    <Card
-      css={{
-        bgColor: "rgb(226, 246, 180, 0.5)",
-      }}
-    >
-      <Input 
-      rounded 
-      label="Սոցիալական վճար" 
-      value={selectPensionTax} 
-      color="primary" 
-      />
-    </Card>
+    <div className={styles.container}>
+      <div className={styles.leftBox}>
+        <span className={styles.leftText}>Սոցիալական վճար</span>
+      </div>
+
+      <div
+        onClick={() => handleCopy(pensionTax)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        className={styles.rightBox}
+      >
+        <span className={styles.rightText}>{pensionTax.toLocaleString()}</span>
+        {!copied && isHovered && <span className={styles.copyTooltip}>Պատճենել</span>}
+        {copied && isHovered && <span className={styles.copyTooltip}>Պատճենված է</span>}
+      </div>
+    </div>
   );
 }
