@@ -19,7 +19,7 @@
 }
 
 .calculatorSection {
-  flex: 1.2;
+  flex: 1.5;
   padding: 24px;
   background: white;
   overflow: visible !important;
@@ -64,6 +64,8 @@
 .taxesCard {
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 70px;
+  margin-right: 70px;
   border: 1px solid #e2e8f0;
   border-radius: 16px;
   background: white;
