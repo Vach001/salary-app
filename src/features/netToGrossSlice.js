@@ -32,11 +32,11 @@ export const netToGross = () => (dispatch, getState) => {
     
     dispatch(setGrossSalary(grossSalary));
     
-    // Եկամտային հարկ 
+    dispatch({ type: "SET_SALARY", payload: { salary: grossSalary, year } });
+    
     const incomeTaxValue = Math.round(isIT ? grossSalary * 0.1 : grossSalary * 0.2);
     dispatch({ type: "incomeTax/setIncomeTax", payload: incomeTaxValue });
     
-    // Սոցվճար
     let pensionValue = 0;
     if (pensionType === "VOLUNTARY") {
         pensionValue = Math.min(Math.round(grossSalary * 0.05), 56250);
@@ -47,24 +47,13 @@ export const netToGross = () => (dispatch, getState) => {
     }
     dispatch({ type: "pensionTax/setPensionTax", payload: pensionValue });
     
-    // Դրոշմանիշային վճար
     const stampFeeValue = year >= 2026 
         ? (grossSalary <= 1000000 ? 1000 : 15000)
         : (grossSalary < 2000 ? 0 : grossSalary < 100001 ? 1500 : grossSalary < 200001 ? 3000 : grossSalary < 500001 ? 5500 : grossSalary < 1000001 ? 8500 : 15000);
     dispatch({ type: "stampFee/setStampFee", payload: stampFeeValue });
     
-    // Առողջապահություն 
-    let healthValue = 0;
-    if (year >= 2026 && isHealthMember) {
-        healthValue = grossSalary <= 500000 ? 4800 : 10800;
-    }
-    dispatch({ type: "SET_HEALTH_INSURANCE", payload: healthValue });
-    
-    // Ընդամենը հարկեր
-    const totalFees = incomeTaxValue + pensionValue + stampFeeValue + healthValue;
+    const totalFees = incomeTaxValue + pensionValue + stampFeeValue + (year >= 2026 && isHealthMember ? (grossSalary > 500000 ? 10800 : 4800) : 0);
     dispatch({ type: "sumFee/setSumFee", payload: totalFees });
-    
-    // Final Salary (Gross-ը NET ռեժիմում)
     dispatch({ type: "finalSalary/setFinalSalary", payload: grossSalary });
 };
 
