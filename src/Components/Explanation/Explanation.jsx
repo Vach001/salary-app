@@ -29,7 +29,7 @@ export default function Explanation() {
                     <Text css={{ marginBottom: "8px" }}>📌 Եկամտային հարկ՝ <b>{incomeTax.toLocaleString()} դրամ</b></Text>
                     <Text css={{ marginBottom: "8px" }}>📌 Սոցիալական վճար՝ <b>{pensionTax.toLocaleString()} դրամ</b></Text>
                     <Text css={{ marginBottom: "8px" }}>📌 Դրոշմանիշային վճար՝ <b>{stampFee.toLocaleString()} դրամ</b></Text>
-                    {healthInsurance > 0 && (
+                    {healthInsurance >= 0 && (
                         <Text css={{ marginBottom: "8px" }}>📌 Պարտադիր առողջապահության վճար՝ <b>{healthInsurance.toLocaleString()} դրամ</b></Text>
                     )}
                 </div>
@@ -60,7 +60,7 @@ export default function Explanation() {
                 <Text css={{ marginBottom: "8px" }}>📌 Եկամտային հարկ՝ <b>{incomeTax.toLocaleString()} դրամ</b></Text>
                 <Text css={{ marginBottom: "8px" }}>📌 Սոցիալական վճար՝ <b>{pensionTax.toLocaleString()} դրամ</b></Text>
                 <Text css={{ marginBottom: "8px" }}>📌 Դրոշմանիշային վճար՝ <b>{stampFee.toLocaleString()} դրամ</b></Text>
-                {healthInsurance > 0 && (
+                {healthInsurance >= 0 && (
                     <Text css={{ marginBottom: "8px" }}>📌 Պարտադիր առողջապահության վճար՝ <b>{healthInsurance.toLocaleString()} դրամ</b></Text>
                 )}
             </div>
