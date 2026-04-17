@@ -1,6 +1,10 @@
 # 💰 Salary Calculator
 
-🔗 **[Try it online](https://vach001.github.io/salary-app/)**
+<p align="center">
+  <a href="https://vach001.github.io/salary-app/" target="_blank" rel="noopener noreferrer">
+    🔗 Click me → Use 💰 Salary Calculator Online 🚀
+  </a>
+</p>
 
 **Includes updated 2026 tax legislation**
 
