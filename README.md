@@ -1,7 +1,7 @@
 # 💰 Salary Calculator
 
 <p align="center">
-  <a href="#" onclick="window.open('https://vach001.github.io/salary-app/', '_blank'); return false;">
+  <a href="https://vach001.github.io/salary-app/" target="_blank" rel="noopener noreferrer">
     🔗 Click me → Use 💰 Salary Calculator Online 🚀
   </a>
 </p>
