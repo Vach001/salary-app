@@ -10,14 +10,16 @@
 
 ## ✨ Features
 
-- **Gross ↔ Net** calculation (gross to net and vice versa)
-- **2024, 2025, 2026** tax rate calculations
-- **IT sector benefit** (10% income tax)
-- **Pension system options** (voluntary / compulsory / non-participant)
-- **Mandatory health insurance** (4800 / 10800 AMD)
-- **Stamp duty** (from 2026: 1000/15000 AMD)
-- **Copy results** (hover → click to copy)
-- **Responsive design** (Desktop & Mobile)
+| Category | Description |
+|----------|-------------|
+| 🔄 **Gross ↔ Net** | Calculate gross to net and vice versa |
+| 📆 **Tax years** | 2024, 2025, 2026 tax rate support |
+| 💻 **IT benefit** | 10% income tax for IT sector |
+| 🏦 **Pension** | Voluntary / Compulsory / Non-participant |
+| 🏥 **Health insurance** | 4,800 / 10,800 AMD |
+| 📜 **Stamp duty** | From 2026: 1,000 / 15,000 AMD |
+| 📋 **Copy results** | Hover → Click to copy any tax amount |
+| 📱 **Responsive** | Desktop & Mobile friendly |
 
 ## 🛠️ Technologies
 
